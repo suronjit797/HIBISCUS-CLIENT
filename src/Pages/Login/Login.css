@@ -1,0 +1,9 @@
+.my_form{
+    max-width: 400px;
+    margin: auto;
+    min-height: calc( 100vh - 200px );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

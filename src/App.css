@@ -1,0 +1,76 @@
+:root {
+    --primary_color: #ecf0f1;
+}
+
+
+/* global */
+* {
+    transition: .3s ease-in-out;
+}
+
+body {
+    background-color: var(--primary_color);
+}
+
+img {
+    max-width: 100%;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+}
+
+.primary_bg {
+    background-color: var(--primary_color);
+}
+
+.primary_text {
+    color: var(--primary_color);
+}
+
+.primary_btn {
+    background-color: #fff;
+    padding: 10px 30px;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    transition: .3s ease-in-out;
+    border: 2px solid #2c3e50;
+}
+.primary_btn span{
+    position: relative;
+    transition: .3s ease-out;
+    font-weight: bold;
+}
+
+.primary_btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #2c3e50;
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0) skew(85deg);
+    transition: .3s ease-in-out;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
+.primary_btn:hover::before{
+    transform: scaleX(2);
+}
+.primary_btn:hover span{
+    color: #fff;
+}
+
+/* app */
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}

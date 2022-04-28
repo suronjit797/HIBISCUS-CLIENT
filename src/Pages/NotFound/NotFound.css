@@ -1,0 +1,6 @@
+.notFound{
+    height: calc( 100vh - 100px );
+    display: grid;
+    align-items: center;
+    place-content: center;
+}
