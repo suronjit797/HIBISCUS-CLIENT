@@ -7,10 +7,6 @@
 }
 
 
-/* global */
-* {
-    transition: .3s ease-in-out;
-}
 
 body {
     background-color: var(--primary_color);
@@ -79,3 +75,23 @@ a:hover {
     flex-direction: column;
 }
 
+/* or divider */
+.divider{
+    position: relative;
+    
+}
+.divider span{
+    background-color: var(--primary_color);
+    display: inline-block;
+    padding: 0 20px;
+}
+.divider::after{
+    content: '';
+    position: absolute;
+    top: 48%;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #2c3e50;
+    z-index: -1;
+}

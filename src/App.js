@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="app">
-      <ToastContainer />
+      <ToastContainer toastClassName='text-capitalize' />
       <Header />
 
       <div className="container">

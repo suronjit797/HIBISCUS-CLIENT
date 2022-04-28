@@ -5,10 +5,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import FirebaseErrorMsg from '../../Components/firebaseErrorMsg';
+import SocialSignIn from '../../Components/SocialSignIn/SocialSignIn';
 
 
 const Register = () => {
-
+    
+    // location
     const navigate = useNavigate()
     const location = useLocation()
     let from = location.state?.from?.pathname || "/";
@@ -56,9 +58,9 @@ const Register = () => {
 
     if (emailLoading || updating) {
         return (
-                <p className="centerSpinner">
-                    <Spinner animation="border" variant="primary" />
-                </p>
+            <p className="centerSpinner">
+                <Spinner animation="border" variant="primary" />
+            </p>
         )
     }
 
@@ -127,6 +129,8 @@ const Register = () => {
                 > <span>Register Now</span> </button>
                 <p className='my-3' > Don't have an account <Link to='/login'> Login Now </Link> </p>
             </form>
+
+            <SocialSignIn />
         </div>
     );
 };

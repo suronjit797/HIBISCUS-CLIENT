@@ -4,6 +4,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import FirebaseErrorMsg from '../../Components/firebaseErrorMsg';
+import SocialSignIn from '../../Components/SocialSignIn/SocialSignIn';
 import auth from '../../firebase.init';
 
 
@@ -11,7 +12,6 @@ import './Login.css'
 
 
 const Login = () => {
-
     // form state
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -30,6 +30,7 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
 
+    // for error message
     useEffect(() => {
         if (signError) {
             toast.error(FirebaseErrorMsg(signError.message), { theme: "colored" })
@@ -37,16 +38,18 @@ const Login = () => {
     }, [signError])
 
 
-    // sumbit handler
+    // login sumbit handler
     const handleSumbit = event => {
         event.preventDefault()
         signInWithEmailAndPassword(email, password)
     }
 
+    // password reset handeler
     const handleResetPassowrd = () => {
         toast.error('Processing Reset Password...', { theme: "colored" })
     }
 
+    // loading spinner
     if (signLoading) {
         return (
             <p className="centerSpinner">
@@ -55,6 +58,7 @@ const Login = () => {
         )
     }
 
+    // navigate to home
     if (signUser) {
         navigate(from, { replace: true });
     }
@@ -87,9 +91,10 @@ const Login = () => {
                     Forgotten password?
                 </b>
 
-                <button className="btn primary_btn w-100"> <span>Login Now</span> </button>
+                <button className="btn mt-3 primary_btn w-100"> <span>Login Now</span> </button>
                 <p className='my-3' > Don't have an account <Link to='/register'> Register Now </Link> </p>
             </form>
+            <SocialSignIn />
         </div>
     );
 };
