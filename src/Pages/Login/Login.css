@@ -1,9 +1,40 @@
-.my_form{
+.my_form {
     max-width: 400px;
     margin: auto;
-    min-height: calc( 100vh - 200px );
+    min-height: calc(100vh - 200px);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    box-shadow: var(--box_shadow-up);
+    border-radius: 20px;
+}
+
+.my_form .form_control {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: transparent;
+    outline: none !important;
+    box-shadow: var(--box_shadow-down);
+    border-radius: 20px;
+    background-color: transparent;
+}
+
+.my_form button {
+    border-radius: 30px;
+    background-color: transparent;
+    border: transparent;
+    box-shadow:  var(--box_shadow-up) !important;
+}
+.my_form button:active {
+    box-shadow:  var(--box_shadow-down) !important;
+}
+
+.centerSpinner{
+    height: 100vh;
+    display: grid;
     align-items: center;
     justify-content: center;
 }

@@ -1,5 +1,9 @@
 :root {
-    --primary_color: #ecf0f1;
+    --primary_color: #e1e3f4;
+    --box_shadow-up:   4px 4px 5px #adafbc, -4px -4px 5px #ffffff;
+    --box_shadow-down:    inset 3px 3px 5px #adafbc, inset -3px -3px 5px #ffffff;
+
+;
 }
 
 
@@ -74,3 +78,4 @@ a:hover {
     display: flex;
     flex-direction: column;
 }
+

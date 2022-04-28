@@ -1,59 +1,131 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import { toast } from 'react-toastify';
+import FirebaseErrorMsg from '../../Components/firebaseErrorMsg';
+
 
 const Register = () => {
 
+    const navigate = useNavigate()
+    const location = useLocation()
+    let from = location.state?.from?.pathname || "/";
+
+
+
     // form state
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [agree, setAgree] = useState(false)
+
+
+    // firebase 
+    const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating] = useUpdateProfile(auth);
+
+
 
     // sumbit handler
-    const handleSumbit = event => {
+    const handleSumbit = async (event) => {
         event.preventDefault()
 
-        if(password !== confirmPassword){
-            alert('Password Does not match')
-            return
+        // confirm passwor check
+        if (password !== confirmPassword) {
+            return toast.error('Password Does not match', { theme: "colored" })
         }
+        await createUserWithEmailAndPassword(email, password)
+        await updateProfile({ displayName: name });
+    }
 
-        alert(email, password)
+    useEffect(() => {
+        if (emailError) {
+            toast.error(FirebaseErrorMsg(emailError.message), { theme: "colored" })
+        }
+    }, [emailError])
+
+
+    if (emailUser) {
+        navigate(from, { replace: true });
     }
 
 
+
+    if (emailLoading || updating) {
+        return (
+                <p className="centerSpinner">
+                    <Spinner animation="border" variant="primary" />
+                </p>
+        )
+    }
+
+
+
+
     return (
-        <div className='my-4 my_form'>
-            <h1 className="text-center mb-4"> Register Hare </h1>
+        <div className='my-5 my_form'>
+            <h1 className="text-center mb-5"> Registeration </h1>
             <form onSubmit={handleSumbit} className='w-100'>
+                <input type="text"
+                    name="name"
+                    id="name"
+                    className="form_control mb-3"
+                    onChange={e => setName(e.target.value)}
+                    value={name}
+                    placeholder='Your Name'
+                    // autoComplete='off'
+                    required
+                />
                 <input type="email"
                     name="email"
                     id="email"
-                    className="form-control mb-3"
-                    required
+                    className="form_control mb-3"
                     onChange={e => setEmail(e.target.value)}
                     value={email}
                     placeholder='Your Email'
+                    // autoComplete='off'
+                    required
                 />
                 <input type="password"
                     name="password"
                     id="password"
-                    className="form-control mb-3"
-                    required
+                    className="form_control mb-3"
                     onChange={e => setPassword(e.target.value)}
                     value={password}
                     placeholder='Your Password'
+                    // autoComplete='off'
+                    required
                 />
                 <input type="password"
                     name="password"
                     id="confirmPassword"
-                    className="form-control mb-3"
-                    required
+                    className="form_control mb-3"
                     onChange={e => setConfirmPassword(e.target.value)}
                     value={confirmPassword}
                     placeholder='Confirm Your Password'
+                    // autoComplete='off'
+                    required
                 />
+                <div className="mb-3 form-check">
+                    <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="exampleCheck1"
+                        checked={agree}
+                        onChange={e => setAgree(e.target.checked)}
+                    />
+                    <label className="form-check-label text-capitalize" htmlFor="exampleCheck1">
+                        are you agree with out terms & conditions?
+                    </label>
+                </div>
+                <button
+                    className="btn mt-3 primary_btn w-100"
+                    disabled={!agree}
+                > <span>Register Now</span> </button>
                 <p className='my-3' > Don't have an account <Link to='/login'> Login Now </Link> </p>
-                <button className="btn primary_btn w-100"> <span>Register Now</span> </button>
             </form>
         </div>
     );
