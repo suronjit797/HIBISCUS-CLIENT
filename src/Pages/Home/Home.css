@@ -2,3 +2,6 @@
 .carousel-control-prev{
     display: none;
 }
+.carousel-item img{
+    min-height: 400px;
+}

@@ -18,6 +18,7 @@ import Register from './Pages/Register/Register';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './firebase.init';
 import { Spinner } from 'react-bootstrap';
+import SingleInventory from './Pages/SingleInventory/SingleInventory';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path='/' element={<RequireAuth><Home /></RequireAuth>} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/inventory/:id' element={<SingleInventory />} />
 
         <Route path='*' element={<NotFound />} />
       </Routes>

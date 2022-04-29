@@ -66,7 +66,7 @@ a:hover {
     border: transparent;
     box-shadow:  var(--box_shadow-up) !important;
 }
-.neomorphs_btn:active {
+.neomorphs_btn:not(:disabled):active {
     box-shadow:  var(--box_shadow-down) !important;
 }
 

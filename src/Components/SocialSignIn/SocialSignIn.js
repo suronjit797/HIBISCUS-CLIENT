@@ -64,10 +64,10 @@ const SocialSignIn = () => {
                 <button className='neomorphs_btn' onClick={() => signInWithGoogle()} >
                     <FontAwesomeIcon icon={faGoogle} />
                 </button>
-                <button className='neomorphs_btn' onClick={() => signInWithFacebook()} >
+                <button disabled className='neomorphs_btn' onClick={() => signInWithFacebook()} >
                     <FontAwesomeIcon icon={faFacebookF} />
                 </button>
-                <button className='neomorphs_btn' onClick={() => signInWithGithub()} >
+                <button disabled className='neomorphs_btn' onClick={() => signInWithGithub()} >
                     <FontAwesomeIcon icon={faGithub} />
                 </button>
             </div>
