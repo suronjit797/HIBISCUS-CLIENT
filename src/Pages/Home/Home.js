@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import FirebaseErrorMsg from '../../Components/firebaseErrorMsg';
 import auth from '../../firebase.init';
+import HomeBanner from './HomeBanner';
 
 
 const Home = () => {
@@ -30,9 +31,9 @@ const Home = () => {
 
 
     return (
-        <div>
-            home
-        </div>
+        <section className='home'>
+            <HomeBanner />
+        </section>
     );
 };
 

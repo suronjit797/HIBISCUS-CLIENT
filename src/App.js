@@ -22,17 +22,17 @@ import { Spinner } from 'react-bootstrap';
 
 function App() {
 
-  
-    // fire base
-    const [user, loading, error] = useAuthState(auth);
-    
-    // loading spinner
-    if (loading) {
-      return (
-          <section className="centerSpinner">
-              <Spinner animation="border" variant="primary" />
-          </section>
-      )
+
+  // fire base
+  const [user, loading, error] = useAuthState(auth);
+
+  // loading spinner
+  if (loading) {
+    return (
+      <section className="centerSpinner">
+        <Spinner animation="border" variant="primary" />
+      </section>
+    )
   }
 
 
@@ -41,16 +41,13 @@ function App() {
       <ToastContainer toastClassName='text-capitalize' />
       <Header />
 
-      <div className="container">
-        <Routes>
-          <Route path='/' element={<RequireAuth><Home /></RequireAuth>} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
+      <Routes>
+        <Route path='/' element={<RequireAuth><Home /></RequireAuth>} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
 
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </div>
-
+        <Route path='*' element={<NotFound />} />
+      </Routes>
       <Footer />
     </div>
   );
