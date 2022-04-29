@@ -9,7 +9,7 @@ import SocialSignIn from '../../Components/SocialSignIn/SocialSignIn';
 
 
 const Register = () => {
-    
+
     // location
     const navigate = useNavigate()
     const location = useLocation()
@@ -31,11 +31,16 @@ const Register = () => {
 
 
 
-    // sumbit handler
-    const handleSumbit = async (event) => {
+    // submit handler
+    const handleSubmit = async (event) => {
         event.preventDefault()
 
-        // confirm passwor check
+        // password must be 6 character
+        if (password.length < 6) {
+            return toast.error('Password Must be 6 Character', { theme: "colored" })
+        }
+
+        // confirm password check
         if (password !== confirmPassword) {
             return toast.error('Password Does not match', { theme: "colored" })
         }
@@ -54,13 +59,11 @@ const Register = () => {
         navigate(from, { replace: true });
     }
 
-
-
     if (emailLoading || updating) {
         return (
-            <p className="centerSpinner">
+            <section className="centerSpinner">
                 <Spinner animation="border" variant="primary" />
-            </p>
+            </section>
         )
     }
 
@@ -69,8 +72,8 @@ const Register = () => {
 
     return (
         <div className='my-5 my_form'>
-            <h1 className="text-center mb-5"> Registeration </h1>
-            <form onSubmit={handleSumbit} className='w-100'>
+            <h1 className="text-center mb-5"> Registration </h1>
+            <form onSubmit={handleSubmit} className='w-100'>
                 <input type="text"
                     name="name"
                     id="name"
@@ -124,7 +127,7 @@ const Register = () => {
                     </label>
                 </div>
                 <button
-                    className="btn mt-3 primary_btn w-100"
+                    className="btn mt-3 neomorphs_btn w-100"
                     disabled={!agree}
                 > <span>Register Now</span> </button>
                 <p className='my-3' > Don't have an account <Link to='/login'> Login Now </Link> </p>

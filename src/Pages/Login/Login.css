@@ -17,19 +17,3 @@
     background-color: transparent;
 }
 
-.my_form button {
-    border-radius: 30px;
-    background-color: transparent;
-    border: transparent;
-    box-shadow:  var(--box_shadow-up) !important;
-}
-.my_form button:active {
-    box-shadow:  var(--box_shadow-down) !important;
-}
-
-.centerSpinner{
-    height: 100vh;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-}

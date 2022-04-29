@@ -3,4 +3,9 @@
     display: grid;
     align-items: center;
     place-content: center;
+    text-shadow: var(--box_shadow-up);
 }
+
+.notFound .neomorphs_btn{
+    text-shadow: none;
+} 

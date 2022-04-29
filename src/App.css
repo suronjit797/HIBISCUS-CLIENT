@@ -2,12 +2,10 @@
     --primary_color: #e1e3f4;
     --box_shadow-up:   4px 4px 5px #adafbc, -4px -4px 5px #ffffff;
     --box_shadow-down:    inset 3px 3px 5px #adafbc, inset -3px -3px 5px #ffffff;
-
-;
 }
 
 
-
+/* global css */
 body {
     background-color: var(--primary_color);
 }
@@ -60,6 +58,18 @@ a:hover {
     cursor: pointer;
 }
 
+.neomorphs_btn{
+    border-radius: 30px;
+    background-color: transparent;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: transparent;
+    box-shadow:  var(--box_shadow-up) !important;
+}
+.neomorphs_btn:active {
+    box-shadow:  var(--box_shadow-down) !important;
+}
+
 
 .primary_btn:hover::before{
     transform: scaleX(2);
@@ -94,4 +104,11 @@ a:hover {
     width: 100%;
     background-color: #2c3e50;
     z-index: -1;
+}
+
+.centerSpinner{
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
 }

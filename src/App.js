@@ -15,9 +15,26 @@ import Login from './Pages/Login/Login';
 import NotFound from './Pages/NotFound/NotFound';
 import Footer from './Components/Footer/Footer';
 import Register from './Pages/Register/Register';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './firebase.init';
+import { Spinner } from 'react-bootstrap';
 
 
 function App() {
+
+  
+    // fire base
+    const [user, loading, error] = useAuthState(auth);
+    
+    // loading spinner
+    if (loading) {
+      return (
+          <section className="centerSpinner">
+              <Spinner animation="border" variant="primary" />
+          </section>
+      )
+  }
+
 
   return (
     <div className="app">

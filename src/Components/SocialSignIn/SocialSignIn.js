@@ -17,54 +17,62 @@ const SocialSignIn = () => {
     const location = useLocation()
     let from = location.state?.from?.pathname || "/";
 
-    // google singin  
+    // google sign in  
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-    const [signInWithFacebook, facebookeUser, facebookeLoading, facebookeError] = useSignInWithFacebook(auth);
+    const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
     const [signInWithGithub, githubUser, githubLoading, githubError] = useSignInWithGithub(auth);
 
+
+    // error toast
     useEffect(() => {
         if (googleError) {
             toast.error(FirebaseErrorMsg(googleError.message), { theme: "colored" })
         }
     }, [googleError])
     useEffect(() => {
-        if (facebookeError) {
-            toast.error(FirebaseErrorMsg(facebookeError.message), { theme: "colored" })
+        if (facebookError) {
+            toast.error(FirebaseErrorMsg(facebookError.message), { theme: "colored" })
         }
-    }, [facebookeError])
+    }, [facebookError])
     useEffect(() => {
         if (githubError) {
             toast.error(FirebaseErrorMsg(githubError.message), { theme: "colored" })
         }
     }, [githubError])
 
-    // navigat to target pages
-    if (googleUser || facebookeUser || githubUser) {
+    // navigate to target pages
+    if (googleUser || facebookUser || githubUser) {
         navigate(from, { replace: true });
     }
 
     // spinner
-    if (googleLoading || facebookeLoading || githubLoading) {
+    if (googleLoading || facebookLoading || githubLoading) {
         return (
-            <p className="text-center">
+            <section className="text-center">
                 <Spinner animation="border" variant="primary" />
-            </p>
+            </section>
         )
     }
 
 
     return (
-        <>
+        <div>
             <p className="text-center my-3 divider"> <span>Or</span> </p>
             <p className="text-center"> <b>Login with social media</b> </p>
 
-            <p className="text-center social_icons">
-                <button onClick={() => signInWithGoogle()} > <FontAwesomeIcon icon={faGoogle} /> </button>
-                <button onClick={() => signInWithFacebook()} > <FontAwesomeIcon icon={faFacebookF} /> </button>
-                <button onClick={() => signInWithGithub()} > <FontAwesomeIcon icon={faGithub} /> </button>
-            </p>
+            <div className="text-center social_icons">
+                <button className='neomorphs_btn' onClick={() => signInWithGoogle()} >
+                    <FontAwesomeIcon icon={faGoogle} />
+                </button>
+                <button className='neomorphs_btn' onClick={() => signInWithFacebook()} >
+                    <FontAwesomeIcon icon={faFacebookF} />
+                </button>
+                <button className='neomorphs_btn' onClick={() => signInWithGithub()} >
+                    <FontAwesomeIcon icon={faGithub} />
+                </button>
+            </div>
 
-        </>
+        </div>
     );
 };
 

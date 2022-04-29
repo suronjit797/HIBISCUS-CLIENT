@@ -21,7 +21,7 @@ const Login = () => {
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
-    // firebase hoooks
+    // firebase hooks
     const [
         signInWithEmailAndPassword,
         signUser,
@@ -38,23 +38,23 @@ const Login = () => {
     }, [signError])
 
 
-    // login sumbit handler
-    const handleSumbit = event => {
+    // login submit handler
+    const handleSubmit = event => {
         event.preventDefault()
         signInWithEmailAndPassword(email, password)
     }
 
-    // password reset handeler
-    const handleResetPassowrd = () => {
+    // password reset handler
+    const handleResetPassword = () => {
         toast.error('Processing Reset Password...', { theme: "colored" })
     }
 
     // loading spinner
     if (signLoading) {
         return (
-            <p className="centerSpinner">
+            <section className="centerSpinner">
                 <Spinner animation="border" variant="primary" />
-            </p>
+            </section>
         )
     }
 
@@ -66,7 +66,7 @@ const Login = () => {
     return (
         <div className='my-5 my_form'>
             <h1 className="text-center mb-5"> Login Hare </h1>
-            <form onSubmit={handleSumbit} className='w-100'>
+            <form onSubmit={handleSubmit} className='w-100'>
                 <input type="email"
                     name="email"
                     id="email"
@@ -87,11 +87,11 @@ const Login = () => {
                     // autoComplete='off'
                     required
                 />
-                <b className='mb-3 d-block cursor-pointer text-primary' onClick={handleResetPassowrd}>
+                <b className='mb-3 d-block cursor-pointer text-primary' onClick={handleResetPassword}>
                     Forgotten password?
                 </b>
 
-                <button className="btn mt-3 primary_btn w-100"> <span>Login Now</span> </button>
+                <button className="btn mt-3 neomorphs_btn w-100"> <span>Login Now</span> </button>
                 <p className='my-3' > Don't have an account <Link to='/register'> Register Now </Link> </p>
             </form>
             <SocialSignIn />

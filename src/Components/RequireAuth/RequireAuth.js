@@ -20,7 +20,7 @@ const RequireAuth = ({ children }) => {
         }
     }, [error])
 
-    // loading spiner
+    // loading spinner
     if(loading){
         return <Spinner animation="border" variant="primary" />
     }
