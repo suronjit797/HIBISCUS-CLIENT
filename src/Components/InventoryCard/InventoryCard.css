@@ -13,3 +13,6 @@
 .inventory_card .neomorphs_btn:active{
     box-shadow: none !important;
 }
+.inventory .inventory_card .neomorphs_btn{
+    display: none;
+}

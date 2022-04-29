@@ -30,9 +30,10 @@ const InventoryCard = ({ inventory }) => {
                         <small className='text-primary' > {model} </small>
                     </Card.Title>
                     <h5 className="fw-bold text-primary">
-                        <span className='tk'>&#2547;</span>{parseInt(price).toLocaleString()}/=
+                        <span className="text-dark me-2"> price: </span> 
+                        <span className='tk'> &#2547;</span>{parseInt(price).toLocaleString()}/=
                     </h5>
-                    <h6> supplied by {supplier} </h6>
+                    <h6 className='text-secondary mb-3 fw-bold'> supplied by {supplier} </h6>
                     <Card.Text className="text-justify">
                         {
                             description.length > 140 ? (
@@ -52,7 +53,7 @@ const InventoryCard = ({ inventory }) => {
                         }
                     </div>
 
-                    <Link to={`/update-item/${_id}`} className="btn neomorphs_btn bg-dark text-light d-inline-block mt-3 w-100"> Manage Stock </Link>
+                    <Link to={`/update-item/${_id}`} className="btn neomorphs_btn bg-dark text-light mt-3 w-100"> Manage Stock </Link>
 
                 </Card.Body>
             </Card>

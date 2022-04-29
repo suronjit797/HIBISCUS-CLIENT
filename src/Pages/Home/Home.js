@@ -48,10 +48,10 @@ const Home = () => {
             <div className="container">
                 <h2 className="text-center fw-bold mt-5"> Inventory Items </h2>
 
-                <div className="inventory mt-4 mb-5">
+                <div className="pmt-4 mb-5">
                     <Row xs={1} md={2} lg={3} className="g-4">
                         {
-                            inventories.map((inventory, index) => index < 6 && <InventoryCard key={index} inventory={inventory} />)
+                            inventories.map((inventory, index) => index < 6 && <InventoryCard key={inventory._id} inventory={inventory} />)
                         }
                     </Row>
                     <div className="text-center mt-4">

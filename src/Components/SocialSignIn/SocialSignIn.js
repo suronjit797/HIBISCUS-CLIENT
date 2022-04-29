@@ -15,7 +15,7 @@ const SocialSignIn = () => {
     // location
     const navigate = useNavigate()
     const location = useLocation()
-    let from = location.state?.from?.pathname || "/";
+    let from = location?.state?.from?.pathname || "/";
 
     // google sign in  
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);

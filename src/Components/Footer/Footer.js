@@ -11,11 +11,13 @@ import visa from '../../images/cms/visa.jpg'
 import americanExpress from '../../images/cms/americanExpress.jpg'
 import discover from '../../images/cms/discover.jpg'
 import masterCard from '../../images/cms/masterCard.jpg'
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 
 const Footer = () => {
 
+    const [user] = useAuthState(auth);
 
     const handleSignOut = event => {
         event.preventDefault()
@@ -39,7 +41,10 @@ const Footer = () => {
                             <h5 className="fw-bold mt-5 mt-sm-0  mb-4"> Account </h5>
                             <Link to='/my-items'> My items </Link>
                             <Link to='/profile/:id'> Personal Information </Link>
-                            <Link className='text-danger' to='/' onClick={handleSignOut}>Log out</Link>
+                            {
+                                user && <Link className='text-danger' to='/' onClick={handleSignOut}>Log out</Link>
+                            }
+
                         </div>
                     </div>
                     <div className="col-sm-6 col-lg-3">
@@ -65,8 +70,8 @@ const Footer = () => {
                             <form className='footer-form'>
                                 <input
                                     type="email"
-                                    name="email"
-                                    id="email"
+                                    name="footer_email"
+                                    id="footer_email"
                                     placeholder='Your email address'
                                     autoComplete='off'
                                 />

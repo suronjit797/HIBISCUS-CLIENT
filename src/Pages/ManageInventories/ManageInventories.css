@@ -1,0 +1,9 @@
+.manageInventory table{
+    box-shadow: var(--box_shadow-up);
+    text-align: center;
+}
+
+.manageInventory .removeItem{
+    height: 50px;
+    width: 50px;
+}
