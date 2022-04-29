@@ -32,6 +32,7 @@ const Header = () => {
                     <Nav className="ms-auto text-capitalize">
                         <Nav.Link as={NavLink} to="/">Home</Nav.Link>
                         <Nav.Link as={NavLink} to="/blogs">blogs</Nav.Link>
+                        <Nav.Link as={NavLink} to="/inventory">Inventory</Nav.Link>
 
                         {/* login/ logout */}
                         {

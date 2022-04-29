@@ -3,14 +3,17 @@
 
 Welcome to this website [Ranger](https://assignment-10-e7cae.web.app/).
 
+## About this project
+
+This project make this manage Inventory website for an Assignment and Have something to modify. I try to make this site simple use react, css, bootstrap, fontawesome. I try to use neumorphism in some section.
 
 ## Features
 
-- Single page webstie you can use as an app
+- Single page website you can use as an app
 - Login/registration system
-- Can be Observe thrugh Dashboard
+- Can be Observe through Dashboard
 - Search blog in blog page
-- Portected route for non user
+- Protected route for non user
 - MERN stack website backend deploy in heroku
 - Data store in mongoDB
 
@@ -19,8 +22,15 @@ Welcome to this website [Ranger](https://assignment-10-e7cae.web.app/).
 HTML, CSS, JavaScript, React, JSX, RegEx, React-Router-Dom, React-Toastify, Axios, Bootstrap, React-bootstrap, tailwind css, meterial ui, Firebase, Express, Cors, MongoDB...
 
 ## 🛠 Use in this projects
-JSX, CSS, JavaScript, React, Bootstrap, Firebase, Express, MongoDB...
-
+- JSX
+- CSS
+- Bootstrap
+- fontawesome
+- JavaScript
+- React
+- Firebase
+- Express
+- MongoDB 
 
 
 ## Installation

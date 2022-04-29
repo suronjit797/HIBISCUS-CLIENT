@@ -1,5 +1,10 @@
 .inventory .card{
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-shadow: var(--box_shadow-up);
     border-radius: 10px;
     overflow: hidden;
+}
+
+.tk{
+    font-size: 25px;
+    font-weight: bolder;
 }
