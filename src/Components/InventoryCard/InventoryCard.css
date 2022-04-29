@@ -1,10 +1,15 @@
-.inventory .card{
+.inventory_card{
     box-shadow: var(--box_shadow-up);
     border-radius: 10px;
     overflow: hidden;
+    /* background-color: transparent; */
 }
 
 .tk{
     font-size: 25px;
     font-weight: bolder;
+}
+
+.inventory_card .neomorphs_btn:active{
+    box-shadow: none !important;
 }

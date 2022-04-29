@@ -29,10 +29,10 @@ footer h5{
 /* footer social items */
 footer .social a{
     display: inline-flex;
-    height: 35px;
-    width: 35px;
+    height: 33px;
+    width: 33px;
     background-color: rebeccapurple;
-    margin: 0 5px;
+    margin: 0 3px;
     align-items: center;
     justify-content: center;
     border-radius: 50%;

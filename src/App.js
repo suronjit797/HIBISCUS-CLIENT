@@ -1,5 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './firebase.init';
+import { Spinner } from 'react-bootstrap';
 
 // styles
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,10 +18,13 @@ import Login from './Pages/Login/Login';
 import NotFound from './Pages/NotFound/NotFound';
 import Footer from './Components/Footer/Footer';
 import Register from './Pages/Register/Register';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from './firebase.init';
-import { Spinner } from 'react-bootstrap';
 import SingleInventory from './Pages/SingleInventory/SingleInventory';
+import Inventories from './Pages/Inventories/Inventories';
+import ManageInventories from './Pages/ManageInventories/ManageInventories';
+import AddItems from './Pages/AddItems/AddItems';
+import MyItems from './Pages/MyItems/MyItems';
+import Blogs from './Pages/Blogs/Blogs';
+import UpdateItem from './Pages/UpdateItem/UpdateItem';
 
 
 function App() {
@@ -43,10 +49,16 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path='/' element={<RequireAuth><Home /></RequireAuth>} />
+        <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/inventory/:id' element={<SingleInventory />} />
+        <Route path='/inventory' element={<Inventories />} />
+        <Route path='/inventory/:id' element={<RequireAuth><SingleInventory /></RequireAuth>} />
+        <Route path='/update-item/:id' element={<RequireAuth><UpdateItem /></RequireAuth>} />
+        <Route path='/manage-inventories' element={<RequireAuth><ManageInventories /></RequireAuth>} />
+        <Route path='/add-items' element={<RequireAuth><AddItems /></RequireAuth>} />
+        <Route path='/my-items' element={<RequireAuth><MyItems /></RequireAuth>} />
+        <Route path='/blogs' element={<Blogs />} />
 
         <Route path='*' element={<NotFound />} />
       </Routes>

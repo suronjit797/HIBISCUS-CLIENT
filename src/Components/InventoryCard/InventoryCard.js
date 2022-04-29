@@ -22,26 +22,38 @@ const InventoryCard = ({ inventory }) => {
 
     return (
         <Col>
-            <Card>
+            <Card className='inventory_card'>
                 <Card.Img variant="top" src={image} />
                 <Card.Body className='text-capitalize'>
                     <Card.Title>
                         {name}-
                         <small className='text-primary' > {model} </small>
                     </Card.Title>
-                    <h5 className="fw-bold text-primary"> <span className='tk'>&#2547;</span>{parseInt(price).toLocaleString()}/= </h5>
+                    <h5 className="fw-bold text-primary">
+                        <span className='tk'>&#2547;</span>{parseInt(price).toLocaleString()}/=
+                    </h5>
                     <h6> supplied by {supplier} </h6>
-
-                    <Card.Text>
+                    <Card.Text className="text-justify">
                         {
-                            description.length > 30 ? (
-                                <> {description.slice(0, 100)} <Link to={`/inventory/${_id}`}> see more... </Link> </>
+                            description.length > 140 ? (
+                                <>
+                                    {description.slice(0, 140)}... <Link to={`/inventory/${_id}`}>see more </Link>
+                                </>
                             ) : description
                         }
                     </Card.Text>
                     <div className={`fw-bold text-${quantityClass}`}>
-                        <span className={`border border-3 d-inline-block px-3 py-1 rounded border-${quantityClass}`}> in stoke {quantity} items </span>
+                        {
+                            quantity > 0 ? (
+                                <span className={`border border-3 d-inline-block px-3 py-1 rounded border-${quantityClass}`}> in stoke {quantity} items </span>
+                            ) : (
+                                <span className={`border border-3 border-danger d-inline-block px-3 py-1 rounded bg-danger text-white`}> Out of stock </span>
+                            )
+                        }
                     </div>
+
+                    <Link to={`/update-item/${_id}`} className="btn neomorphs_btn bg-dark text-light d-inline-block mt-3 w-100"> Manage Stock </Link>
+
                 </Card.Body>
             </Card>
         </Col>

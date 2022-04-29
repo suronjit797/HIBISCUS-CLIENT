@@ -1,7 +1,7 @@
 :root {
     --primary_color: #e1e3f4;
-    --box_shadow-up:   4px 4px 5px #adafbc, -4px -4px 5px #ffffff;
-    --box_shadow-down:    inset 3px 3px 5px #adafbc, inset -3px -3px 5px #ffffff;
+    --box_shadow-up: 4px 4px 5px #adafbc, -4px -4px 5px #ffffff;
+    --box_shadow-down: inset 3px 3px 5px #adafbc, inset -3px -3px 5px #ffffff;
 }
 
 
@@ -25,6 +25,10 @@ a:hover {
 
 .primary_text {
     color: var(--primary_color);
+}
+
+.text-justify{
+    text-align: justify;
 }
 
 .primary_btn {
