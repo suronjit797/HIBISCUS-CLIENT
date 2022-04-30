@@ -20,6 +20,7 @@ const ManageInventories = () => {
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>supplier</th>
                             <th>Quantity</th>
                             <th> total price </th>
                             <th> Remove item </th>
@@ -27,7 +28,7 @@ const ManageInventories = () => {
                     </thead>
                     <tbody>
                         {
-                            inventories.map(inventory=> <ManageInventoryRow inventory={inventory} /> )
+                            inventories.map(inventory=> <ManageInventoryRow key={inventory._id} inventory={inventory} /> )
                         }
                     </tbody>
                 </Table>

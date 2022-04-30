@@ -22,7 +22,7 @@ const Header = () => {
 
 
     return (
-        <Navbar bg="dark" variant='dark' expand="md">
+        <Navbar bg="dark" variant='dark' expand="lg">
             <Container>
                 <Navbar.Brand as={Link} to="/">
                     <img className='header_logo py-3' src={Logo} alt="company logo" />

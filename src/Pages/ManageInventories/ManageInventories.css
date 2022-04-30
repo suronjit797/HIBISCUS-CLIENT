@@ -1,9 +1,42 @@
-.manageInventory table{
+.manageInventory table {
     box-shadow: var(--box_shadow-up);
     text-align: center;
+    vertical-align: middle;
 }
 
-.manageInventory .removeItem{
+
+.manageInventory .removeItem {
     height: 50px;
     width: 50px;
+}
+
+@media (max-width: 768px) {
+    .manageInventory table {
+        box-shadow: none;
+    }
+    .manageInventory table thead {
+        display: none;
+    }
+
+    .manageInventory table.table>:not(:first-child) {
+        border: none;
+    }
+
+    .manageInventory table tr{
+        display: block;
+        margin-bottom: 20px;
+        box-shadow: var(--box_shadow-up);
+    }
+
+    .manageInventory table td {
+        display: flex;
+        text-align: right;
+        padding: 10px 20px;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .manageInventory table td::before{
+        content: attr(data-level);
+        font-weight: bold;
+    }
 }

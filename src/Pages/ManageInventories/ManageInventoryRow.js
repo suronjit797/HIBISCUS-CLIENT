@@ -19,15 +19,26 @@ const ManageInventoryRow = ({ inventory }) => {
         }
     }, [quantity])
 
+
+    // remove handler
+    const handleRemove = id => {
+        const confirm = window.confirm('are you sure to remove ' + id + ' ' + name)
+        console.log(confirm);
+    }
+
+
     return (
         <tr className={`table-${quantityClass}`}  >
-            <td> {name}-{model} </td>
-            <td> {quantity} </td>
-            <td>
-                <span className='tk'> &#2547; </span>{parseInt(price * quantity).toLocaleString()}/=
+            <td data-level='Name' > {name} ({model}) </td>
+            <td data-level='supplier' > {supplier} </td>
+            <td data-level='Quantity' > {quantity} </td>
+            <td data-level='total price' >
+                <span> <span className='tk'> &#2547; </span>{parseInt(price * quantity).toLocaleString()}/= </span>
             </td>
-            <td>
-                <button className='neomorphs_btn text-danger removeItem' > <FontAwesomeIcon icon={faTrashCan} /> </button>
+            <td className='justify-content-center'>
+                <button className='neomorphs_btn text-danger removeItem' onClick={() => handleRemove(_id)} >
+                    <FontAwesomeIcon icon={faTrashCan} />
+                </button>
             </td>
         </tr>
 
