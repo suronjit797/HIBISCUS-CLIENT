@@ -1,0 +1,33 @@
+.addNewForm {
+    box-shadow: var(--box_shadow-up);
+    padding: 40px 30px;
+    border-radius: 20px;
+    background-color: var(--primary_color);
+}
+
+.addNewForm textarea{
+    resize: none;
+}
+
+.addNewForm .form_control {
+    width: 100%;
+    box-shadow: var(--box_shadow-down);
+    font-weight: 500;
+    padding: 7px 20px;
+    border: transparent;
+    border-radius: 5px;
+}
+.addNewForm .form_control:focus{
+    outline: none;
+}
+
+.addNewForm .neomorphs_btn  {
+    font-weight: 500;
+    /* max-width: 400px; */
+    display: block;
+    text-align: center;
+}
+
+.addNewForm  button[type='submit']{
+    max-width: 400px;
+}

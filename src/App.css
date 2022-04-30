@@ -31,6 +31,12 @@ a:hover {
     text-align: justify;
 }
 
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
+/* button */
 .primary_btn {
     background-color: #fff;
     padding: 10px 30px;
@@ -58,9 +64,14 @@ a:hover {
     transform: scaleX(0) skew(85deg);
     transition: .3s ease-in-out;
 }
-.cursor-pointer{
-    cursor: pointer;
+
+.primary_btn:hover::before{
+    transform: scaleX(2);
 }
+.primary_btn:hover span{
+    color: #fff;
+}
+
 
 .neomorphs_btn{
     border-radius: 30px;
@@ -72,14 +83,6 @@ a:hover {
 }
 .neomorphs_btn:not(:disabled):active {
     box-shadow:  var(--box_shadow-down) !important;
-}
-
-
-.primary_btn:hover::before{
-    transform: scaleX(2);
-}
-.primary_btn:hover span{
-    color: #fff;
 }
 
 /* app */

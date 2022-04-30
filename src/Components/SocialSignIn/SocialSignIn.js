@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import FirebaseErrorMsg from '../firebaseErrorMsg';
 import { toast } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons'
 
 import './SocialSignIn.css'
 import { Spinner } from 'react-bootstrap';

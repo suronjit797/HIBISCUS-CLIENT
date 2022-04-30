@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 import './ManageInventories.css'
 import ManageInventoryRow from './ManageInventoryRow';
 
 const ManageInventories = () => {
+    const navigate = useNavigate()
 
     const [inventories, setInventories] = useState([])
     useEffect(() => {
@@ -16,6 +18,12 @@ const ManageInventories = () => {
     return (
         <div className="manageInventory">
             <div className='container my-5 text-capitalize'>
+                <div className="text-end mb-4">
+                    <button
+                        className="btn px-5 fw-bold neomorphs_btn text-success"
+                        onClick={() => navigate('/add-items')}
+                    > Add new items </button>
+                </div>
                 <Table hover>
                     <thead>
                         <tr>
@@ -28,7 +36,7 @@ const ManageInventories = () => {
                     </thead>
                     <tbody>
                         {
-                            inventories.map(inventory=> <ManageInventoryRow key={inventory._id} inventory={inventory} /> )
+                            inventories.map(inventory => <ManageInventoryRow key={inventory._id} inventory={inventory} />)
                         }
                     </tbody>
                 </Table>
