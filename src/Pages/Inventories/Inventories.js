@@ -6,7 +6,7 @@ import InventoryCard from '../../Components/InventoryCard/InventoryCard';
 const Inventories = () => {
     const [inventories, setInventories] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:3000/json/inventory.json')
+        axios.get('/api/inventory')
             .then(res => setInventories(res.data))
     }, [])
 

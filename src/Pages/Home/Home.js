@@ -17,7 +17,7 @@ const Home = () => {
     const [inventories, setInventories] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:3000/json/inventory.json')
+        axios.get('/api/inventory')
             .then(res => setInventories(res.data))
     }, [])
 
@@ -46,7 +46,7 @@ const Home = () => {
             <HomeBanner />
 
             <div className="container">
-                <h2 className="text-center fw-bold mt-5"> Inventory Items </h2>
+                <h2 className="text-center fw-bold mt-5 mb-4"> Inventory Items </h2>
 
                 <div className="pmt-4 mb-5">
                     <Row xs={1} md={2} lg={3} className="g-4">

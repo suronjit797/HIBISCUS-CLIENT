@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { Button, Modal, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+
 
 import './ManageInventories.css'
 import ManageInventoryRow from './ManageInventoryRow';
@@ -9,11 +10,44 @@ import ManageInventoryRow from './ManageInventoryRow';
 const ManageInventories = () => {
     const navigate = useNavigate()
 
+    // states 
     const [inventories, setInventories] = useState([])
+    const [show, setShow] = useState(false);
+    const [removeId, setRemoveId] = useState('')
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
-        axios.get('http://localhost:3000/json/inventory.json')
-            .then(res => setInventories(res.data))
-    }, [])
+        axios.get('/api/inventory')
+            .then(res => {
+                setInventories(res.data)
+                setLoading(false)
+            })
+    }, [loading])
+
+    // handler
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const handleRemove = () => {
+        setShow(false);
+        axios.delete(`/api/inventory/${removeId}`)
+            .then(res => {
+                setLoading(true)
+                console.log(res.data)
+            })
+            .catch(error => console.log(error))
+    }
+
+
+    // loading spinner
+    if (loading) {
+        return (
+            <section className="centerSpinner">
+                <Spinner animation="border" variant="primary" />
+            </section>
+        )
+    }
+
 
     return (
         <div className="manageInventory">
@@ -36,11 +70,35 @@ const ManageInventories = () => {
                     </thead>
                     <tbody>
                         {
-                            inventories.map(inventory => <ManageInventoryRow key={inventory._id} inventory={inventory} />)
+                            inventories.map(inventory => (
+                                <ManageInventoryRow
+                                    key={inventory._id}
+                                    inventory={inventory}
+                                    handleShow={handleShow}
+                                    setRemoveId={setRemoveId}
+                                />
+                            ))
                         }
                     </tbody>
                 </Table>
             </div>
+
+            <>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Modal heading</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={handleRemove}>
+                            Delete Item
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import axios from 'axios'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons'
@@ -26,13 +27,33 @@ const AddItems = () => {
 
     // fire base
     const [user] = useAuthState(auth);
+    const email = user.email
     //  name, model, image, description, price, quantity, supplier email
 
     const handleAddItems = event => {
         event.preventDefault()
 
+        // make form data
+        const formData = new FormData()
+
+        // append in form data
+        formData.append('email', email)
+        formData.append('name', name)
+        formData.append('model', model)
+        formData.append('image', image)
+        formData.append('description', description)
+        formData.append('price', price)
+        formData.append('quantity', quantity)
+        formData.append('supplier', supplier)
+
+        // post in data base
+        axios.post('/api/inventory', formData)
+            .then(res => console.log(res.data))
+
+
+
+
     }
-    console.log(user.email);
     return (
         <div className='container my-5'>
             <form onSubmit={handleAddItems} className=' addNewForm row'>
@@ -46,6 +67,7 @@ const AddItems = () => {
                             value={name}
                             onChange={e => setName(e.target.value)}
                             placeholder=" Enter your product's name"
+                            // autoComplete='off'
                             className='form_control'
                             autoCapitalize='on'
                             required
@@ -59,6 +81,7 @@ const AddItems = () => {
                             value={model}
                             onChange={e => setModel(e.target.value)}
                             placeholder=" Enter your product's model number"
+                            // autoComplete='off'
                             className='form_control'
                             required
                         />
@@ -72,6 +95,7 @@ const AddItems = () => {
                             value={price}
                             onChange={e => setPrice(e.target.value)}
                             placeholder=" Enter your product's price"
+                            // autoComplete='off'
                             className='form_control'
                             required
                         />
@@ -86,6 +110,7 @@ const AddItems = () => {
                             value={quantity}
                             onChange={e => setQuantity(e.target.value)}
                             placeholder=" Enter your product's quantity"
+                            // autoComplete='off'
                             className='form_control'
                             required
                         />
@@ -98,6 +123,7 @@ const AddItems = () => {
                             value={supplier}
                             onChange={e => setSupplier(e.target.value)}
                             placeholder=" Enter your supplier name"
+                            // autoComplete='off'
                             className='form_control'
                             required
                         />
@@ -112,8 +138,8 @@ const AddItems = () => {
                             name="image"
                             id="image"
                             className='d-none'
-                            value={image}
-                            onChange={e => setImage(e.target.value)}
+                            files={image}
+                            onChange={e => setImage(e.target.files[0])}
                         />
                     </div>
                 </div>
@@ -127,6 +153,7 @@ const AddItems = () => {
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                         placeholder=" Enter your product's description"
+                        // autoComplete='off'
                         required
                     />
                 </div>

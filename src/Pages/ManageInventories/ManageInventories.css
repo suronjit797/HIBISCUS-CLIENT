@@ -10,10 +10,62 @@
     width: 50px;
 }
 
+
+/* confirm message box */
+
+.confirmBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.452);
+    z-index: 9;
+    display: grid;
+    align-items: center;
+    place-content: center;
+    user-select: none;
+}
+
+.confirmBox .confirmMessage {
+    width: 400px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.confirmMessageHeader,
+.confirmMessageBody {
+    padding:20px;
+    position: relative;
+}
+
+.confirmMessageFooter button{
+    width: 50%;
+    border-radius: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.confirmClose{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
 @media (max-width: 768px) {
     .manageInventory table {
         box-shadow: none;
     }
+
     .manageInventory table thead {
         display: none;
     }
@@ -22,7 +74,7 @@
         border: none;
     }
 
-    .manageInventory table tr{
+    .manageInventory table tr {
         display: block;
         margin-bottom: 20px;
         box-shadow: var(--box_shadow-up);
@@ -35,7 +87,8 @@
         align-items: center;
         justify-content: space-between;
     }
-    .manageInventory table td::before{
+
+    .manageInventory table td::before {
         content: attr(data-level);
         font-weight: bold;
     }

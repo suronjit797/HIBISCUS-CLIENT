@@ -22,15 +22,14 @@ const InventoryCard = ({ inventory }) => {
 
     return (
         <Col>
-            <Card className='inventory_card'>
+            <Card className='inventory_card h-100'>
                 <Card.Img variant="top" src={image} />
                 <Card.Body className='text-capitalize'>
                     <Card.Title>
-                        {name}-
-                        <small className='text-primary' > {model} </small>
+                        {name}<small className='text-capitalize' > {model} </small>
                     </Card.Title>
                     <h5 className="fw-bold text-primary">
-                        <span className="text-dark me-2"> price: </span> 
+                        <span className="text-dark me-2"> price: </span>
                         <span className='tk'> &#2547;</span>{parseInt(price).toLocaleString()}/=
                     </h5>
                     <h6 className='text-secondary mb-3 fw-bold'> supplied by {supplier} </h6>
@@ -43,19 +42,20 @@ const InventoryCard = ({ inventory }) => {
                             ) : description
                         }
                     </Card.Text>
-                    <div className={`fw-bold text-${quantityClass}`}>
+
+                </Card.Body>
+                <div className="px-4">
+                    <div className={`inStock fw-bold text-${quantityClass}`}>
                         {
                             quantity > 0 ? (
-                                <span className={`border border-3 d-inline-block px-3 py-1 rounded border-${quantityClass}`}> in stoke {quantity} items </span>
+                                <span className={`d-inline-block px-3 py-2 text-white rounded bg-${quantityClass}`}> in stoke {quantity} items </span>
                             ) : (
-                                <span className={`border border-3 border-danger d-inline-block px-3 py-1 rounded bg-danger text-white`}> Out of stock </span>
+                                <span className={`d-inline-block px-3 py-2 rounded bg-danger text-white`}> Out of stock </span>
                             )
                         }
                     </div>
-
-                    <Link to={`/update-item/${_id}`} className="btn neomorphs_btn bg-dark text-light mt-3 w-100"> Manage Stock </Link>
-
-                </Card.Body>
+                    <Link to={`/update-item/${_id}`} className="btn neomorphs_btn primary_btn  bg-secondary text-light my-3 w-100"> <span> Manage Stock  </span></Link>
+                </div>
             </Card>
         </Col>
     );

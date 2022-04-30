@@ -2,7 +2,12 @@
     box-shadow: var(--box_shadow-up);
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
     /* background-color: transparent; */
+}
+
+.inventory_card img{
+    height: 350px;
 }
 
 .tk{
@@ -13,6 +18,9 @@
 .inventory_card .neomorphs_btn:active{
     box-shadow: none !important;
 }
-.inventory .inventory_card .neomorphs_btn{
-    display: none;
+
+.inStock{
+    position: absolute;
+    left: 0;
+    top: 310px;
 }

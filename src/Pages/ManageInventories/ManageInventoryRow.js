@@ -4,10 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 
-const ManageInventoryRow = ({ inventory }) => {
+const ManageInventoryRow = ({ inventory, handleShow, setRemoveId }) => {
     const { _id, name, model, price, quantity, supplier } = inventory
 
     const [quantityClass, setQuantityClass] = useState('danger')
+
 
     useEffect(() => {
         if (quantity > 20) {
@@ -19,28 +20,29 @@ const ManageInventoryRow = ({ inventory }) => {
         }
     }, [quantity])
 
-
-    // remove handler
-    const handleRemove = id => {
-        const confirm = window.confirm('are you sure to remove ' + id + ' ' + name)
-        console.log(confirm);
+    const handelRemove = id =>{
+        handleShow()
+        setRemoveId(id)
     }
 
 
+
     return (
-        <tr className={`table-${quantityClass}`}  >
-            <td data-level='Name' > {name} ({model}) </td>
-            <td data-level='supplier' > {supplier} </td>
-            <td data-level='Quantity' > {quantity} </td>
-            <td data-level='total price' >
-                <span> <span className='tk'> &#2547; </span>{parseInt(price * quantity).toLocaleString()}/= </span>
-            </td>
-            <td className='justify-content-center'>
-                <button className='neomorphs_btn text-danger removeItem' onClick={() => handleRemove(_id)} >
-                    <FontAwesomeIcon icon={faTrashCan} />
-                </button>
-            </td>
-        </tr>
+        <>
+            <tr className={`table-${quantityClass}`}  >
+                <td data-level='Name' > {name} ({model}) </td>
+                <td data-level='supplier' > {supplier} </td>
+                <td data-level='Quantity' > {quantity} </td>
+                <td data-level='total price' >
+                    <span> <span className='tk'> &#2547; </span>{parseInt(price * quantity).toLocaleString()}/= </span>
+                </td>
+                <td className='justify-content-center'>
+                    <button className='neomorphs_btn text-danger removeItem' onClick={()=>handelRemove(_id)} >
+                        <FontAwesomeIcon icon={faTrashCan} />
+                    </button>
+                </td>
+            </tr>
+        </>
 
     );
 };
