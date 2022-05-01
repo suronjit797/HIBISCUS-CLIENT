@@ -33,6 +33,8 @@ const Inventories = () => {
                     }
                 </Row>
             </div>
+
+            {/* have to add pagination */}
         </div>
     );
 };

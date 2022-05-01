@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 
-const ManageInventoryRow = ({ inventory, handleShow, setRemoveId }) => {
-    const { _id, name, date, quantity, supplier } = inventory
+const ManageInventoryRow = ({ inventory, handleShow, setRemoveItem }) => {
+    const { _id, name, image, date, quantity, supplier } = inventory
 
     const [quantityClass, setQuantityClass] = useState('danger')
 
@@ -22,7 +22,7 @@ const ManageInventoryRow = ({ inventory, handleShow, setRemoveId }) => {
 
     const handelRemove = id => {
         handleShow()
-        setRemoveId(id)
+        setRemoveItem({ id, image })
     }
 
 

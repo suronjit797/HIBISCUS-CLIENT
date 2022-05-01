@@ -1,0 +1,6 @@
+.updateItem .card{
+    box-shadow: var(--box_shadow-up);
+    background-color: transparent;
+    border-radius: 20px;
+    overflow: hidden;
+}

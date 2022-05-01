@@ -13,7 +13,7 @@ const ManageInventories = () => {
     // states 
     const [inventories, setInventories] = useState([])
     const [show, setShow] = useState(false);
-    const [removeId, setRemoveId] = useState('')
+    const [removeItem, setRemoveItem] = useState({})
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -30,7 +30,8 @@ const ManageInventories = () => {
 
     const handleRemove = () => {
         setShow(false);
-        axios.delete(`/api/inventory/${removeId}`)
+        console.log(removeItem)
+        axios.delete(`/api/inventory/${removeItem.id}`, {data: { image: removeItem.image }})
             .then(res => setLoading(true))
             .catch(error => console.log(error))
     }
@@ -72,7 +73,7 @@ const ManageInventories = () => {
                                     key={inventory._id}
                                     inventory={inventory}
                                     handleShow={handleShow}
-                                    setRemoveId={setRemoveId}
+                                    setRemoveItem={setRemoveItem}
                                 />
                             ))
                         }
@@ -96,6 +97,10 @@ const ManageInventories = () => {
                     </Modal.Footer>
                 </Modal>
             </>
+
+
+
+            {/* have to add pagination */}
         </div>
     );
 };
