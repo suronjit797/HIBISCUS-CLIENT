@@ -23,7 +23,9 @@ const InventoryCard = ({ inventory }) => {
     return (
         <Col>
             <Card className='inventory_card h-100'>
-                <Card.Img variant="top" src={image} />
+                <div className="inventory_image">
+                    <Card.Img variant="top" src={image} />
+                </div>
                 <Card.Body className='text-capitalize'>
                     <Card.Title>
                         {name}
@@ -48,9 +50,9 @@ const InventoryCard = ({ inventory }) => {
                     <div className={`inStock fw-bold text-${quantityClass}`}>
                         {
                             quantity > 0 ? (
-                                <span className={`d-inline-block px-3 py-2 text-white rounded bg-${quantityClass}`}> in stoke {quantity} items </span>
+                                <span className={`d-inline-block px-3 py-2 text-white rounded_custom-left bg-${quantityClass}`}> in stoke {quantity} items </span>
                             ) : (
-                                <span className={`d-inline-block px-3 py-2 rounded bg-danger text-white`}> Out of stock </span>
+                                <span className={`d-inline-block px-3 py-2 text-white rounded_custom-left bg-${quantityClass}`}> Out of stock </span>
                             )
                         }
                     </div>
