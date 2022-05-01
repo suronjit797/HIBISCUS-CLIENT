@@ -12,12 +12,12 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
     const navigate = useNavigate()
-    
+
     const [user, loading, error] = useAuthState(auth);
     const [inventories, setInventories] = useState([])
 
     useEffect(() => {
-        axios.get('/api/inventory')
+        axios.get('/api/inventory?limits=6')
             .then(res => setInventories(res.data))
     }, [])
 
@@ -51,19 +51,15 @@ const Home = () => {
                 <div className="pmt-4 mb-5">
                     <Row xs={1} md={2} lg={3} className="g-4">
                         {
-                            inventories.map((inventory, index) => index < 6 && <InventoryCard key={inventory._id} inventory={inventory} />)
+                            inventories.map(inventory => <InventoryCard key={inventory._id} inventory={inventory} />)
                         }
                     </Row>
                     <div className="text-center mt-4">
-                        {
-                            inventories.length > 6 ? (
-                                <button className="btn neomorphs_btn text-capitalize px-5" onClick={()=> navigate('/inventory')}> <b>See more</b> </button>
-                            ) : ''
-                        }
+                        <button className="btn neomorphs_btn text-capitalize px-5" onClick={() => navigate('/inventory')}> <b> Go to inventory page </b> </button>
                     </div>
                 </div>
 
-{/* add 2 more section......... */}
+                {/* add 2 more section......... */}
 
 
             </div>

@@ -14,10 +14,10 @@ const ManageInventories = () => {
     const [inventories, setInventories] = useState([])
     const [show, setShow] = useState(false);
     const [removeId, setRemoveId] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get('/api/inventory')
+        axios.get('/api/inventory/')
             .then(res => {
                 setInventories(res.data)
                 setLoading(false)
@@ -31,10 +31,7 @@ const ManageInventories = () => {
     const handleRemove = () => {
         setShow(false);
         axios.delete(`/api/inventory/${removeId}`)
-            .then(res => {
-                setLoading(true)
-                console.log(res.data)
-            })
+            .then(res => setLoading(true))
             .catch(error => console.log(error))
     }
 
@@ -64,8 +61,8 @@ const ManageInventories = () => {
                             <th>Name</th>
                             <th>supplier</th>
                             <th>Quantity</th>
-                            <th> total price </th>
-                            <th> Remove item </th>
+                            <th> Stored date </th>
+                            <th> <b>#</b> </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,15 +82,15 @@ const ManageInventories = () => {
 
             <>
                 <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
+                    <Modal.Header className='bg-danger text-light'>
                         <Modal.Title>Modal heading</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                    <Modal.Body>Are you sure want to delete this item</Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={handleRemove}>
+                        <Button variant="danger" onClick={handleRemove}>
                             Delete Item
                         </Button>
                     </Modal.Footer>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './InventoryCard.css'
 
 const InventoryCard = ({ inventory }) => {
-    const { _id, name, model, image, description, price, quantity, supplier } = inventory
+    const { _id, name, date, image, description, price, quantity, supplier } = inventory
 
     const [quantityClass, setQuantityClass] = useState('danger')
 
@@ -26,7 +26,7 @@ const InventoryCard = ({ inventory }) => {
                 <Card.Img variant="top" src={image} />
                 <Card.Body className='text-capitalize'>
                     <Card.Title>
-                        {name}<small className='text-capitalize' > {model} </small>
+                        {name}
                     </Card.Title>
                     <h5 className="fw-bold text-primary">
                         <span className="text-dark me-2"> price: </span>

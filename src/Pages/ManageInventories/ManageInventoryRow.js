@@ -5,7 +5,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 
 const ManageInventoryRow = ({ inventory, handleShow, setRemoveId }) => {
-    const { _id, name, model, price, quantity, supplier } = inventory
+    const { _id, name, date, quantity, supplier } = inventory
 
     const [quantityClass, setQuantityClass] = useState('danger')
 
@@ -20,7 +20,7 @@ const ManageInventoryRow = ({ inventory, handleShow, setRemoveId }) => {
         }
     }, [quantity])
 
-    const handelRemove = id =>{
+    const handelRemove = id => {
         handleShow()
         setRemoveId(id)
     }
@@ -30,14 +30,12 @@ const ManageInventoryRow = ({ inventory, handleShow, setRemoveId }) => {
     return (
         <>
             <tr className={`table-${quantityClass}`}  >
-                <td data-level='Name' > {name} ({model}) </td>
-                <td data-level='supplier' > {supplier} </td>
-                <td data-level='Quantity' > {quantity} </td>
-                <td data-level='total price' >
-                    <span> <span className='tk'> &#2547; </span>{parseInt(price * quantity).toLocaleString()}/= </span>
-                </td>
+                <td data-level='Name: ' > {name} </td>
+                <td data-level='supplier: ' > {supplier} </td>
+                <td data-level='Quantity: ' > {quantity} </td>
+                <td data-level='stored date: ' > {date} </td>
                 <td className='justify-content-center'>
-                    <button className='neomorphs_btn text-danger removeItem' onClick={()=>handelRemove(_id)} >
+                    <button className='neomorphs_btn text-danger removeItem' onClick={() => handelRemove(_id)} >
                         <FontAwesomeIcon icon={faTrashCan} />
                     </button>
                 </td>

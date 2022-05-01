@@ -2,36 +2,52 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons'
 
 import './AddItems.css'
 
-
-
-
-
 const AddItems = () => {
+    // make data formate
+    const dt = new Date()
+    const YYYY = '' + dt.getFullYear()
+    let MM = '' + (dt.getMonth() + 1)
+    let DD = '' + dt.getDate()
+
+    if (MM.length < 2) {
+        MM = '0' + MM;
+    }
+    if (DD.length < 2) {
+        DD = '0' + DD;
+    }
 
     // states
     const [name, setName] = useState('')
-    const [model, setModel] = useState('')
     const [image, setImage] = useState('')
-    const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [quantity, setQuantity] = useState('')
     const [supplier, setSupplier] = useState('')
-
-
+    const [date, setDate] = useState(`${YYYY}-${MM}-${DD}`)
+    const [description, setDescription] = useState(name)
 
     // fire base
     const [user] = useAuthState(auth);
     const email = user.email
-    //  name, model, image, description, price, quantity, supplier email
+    //  name, date, image, description, price, quantity, supplier email
 
     const handleAddItems = event => {
         event.preventDefault()
+
+        // validation for add data
+        if (!image) {
+            return toast.error('Please choose a image for your products', { theme: "colored" })
+        } else if (image.size > 1048576) {
+            return toast.error('File size is too large. please try to upload under 1MB', { theme: "colored" })
+        } else if (quantity < 5) {
+            return toast.error('Please add minimum 5 items', { theme: "colored" })
+        }
 
         // make form data
         const formData = new FormData()
@@ -39,20 +55,30 @@ const AddItems = () => {
         // append in form data
         formData.append('email', email)
         formData.append('name', name)
-        formData.append('model', model)
         formData.append('image', image)
-        formData.append('description', description)
         formData.append('price', price)
         formData.append('quantity', quantity)
         formData.append('supplier', supplier)
+        formData.append('date', date)
+        formData.append('description', description)
 
         // post in data base
         axios.post('/api/inventory', formData)
-            .then(res => console.log(res.data))
+            .then(res => {
+                if (res.data.insertedId) {
+                    toast.success('File added successfully', { theme: "colored" })
+                }
+            })
+            .catch(error => toast.error(error.message, { theme: "colored" }))
 
-
-
-
+        // initial state set
+        setName('')
+        setImage('')
+        setDescription('')
+        setPrice('')
+        setQuantity('')
+        setSupplier('')
+        setDate(`${YYYY}-${MM}-${DD}`)
     }
     return (
         <div className='container my-5'>
@@ -73,19 +99,6 @@ const AddItems = () => {
                             required
                         />
                     </div>
-                    <div className="form-group mb-3">
-                        <input
-                            type="text"
-                            name="model"
-                            id="model"
-                            value={model}
-                            onChange={e => setModel(e.target.value)}
-                            placeholder=" Enter your product's model number"
-                            // autoComplete='off'
-                            className='form_control'
-                            required
-                        />
-                    </div>
 
                     <div className="form-group mb-3">
                         <input
@@ -94,6 +107,19 @@ const AddItems = () => {
                             id="price"
                             value={price}
                             onChange={e => setPrice(e.target.value)}
+                            placeholder=" Enter your product's price"
+                            // autoComplete='off'
+                            className='form_control'
+                            required
+                        />
+                    </div>
+                    <div className="form-group mb-3">
+                        <input
+                            type="date"
+                            name="date"
+                            id="date"
+                            value={date}
+                            onChange={e => setDate(e.target.value)}
                             placeholder=" Enter your product's price"
                             // autoComplete='off'
                             className='form_control'

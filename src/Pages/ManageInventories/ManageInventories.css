@@ -91,5 +91,6 @@
     .manageInventory table td::before {
         content: attr(data-level);
         font-weight: bold;
+        padding-right: 10px;
     }
 }
