@@ -94,7 +94,7 @@ const UpdateItem = () => {
                     <div className="row gx-4 align-items-stretch">
                         <div className="col-md-4">
                             <div className="position-relative inventory_image h-100">
-                                
+
                                 <img src={image} className="img-fluid rounded-start h-100 w-100" alt="..." />
                                 <b
                                     className={` position-absolute end-0 top-0 rounded_custom-left px-3 py-2 text-white bg-${quantityClass} `}>
@@ -108,8 +108,9 @@ const UpdateItem = () => {
                             <div className="card-body py-4">
                                 <h4 className="card-title mb-4"> {name} </h4>
                                 <p className="card-text"> {description} </p>
-                                <p className="card-text mb-1"> <b>price:</b> {price} tk </p>
-                                <p className="card-text mb-1"> <b>total price: </b> {quantity * price} tk </p>
+                                <p className="card-text mb-1"> <b>price:</b> {parseInt(price).toLocaleString()} tk </p>
+                                <p className="card-text mb-1"> <b>total price: </b>
+                                    {(parseInt(quantity) * parseInt(price)).toLocaleString()} tk </p>
                                 <p className="card-text"> products supplied by <b>{supplier}</b> </p>
                                 <p className="mb-0"> Added in: {dt}  </p>
                                 <div>

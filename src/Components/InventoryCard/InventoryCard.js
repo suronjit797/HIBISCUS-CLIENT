@@ -20,6 +20,9 @@ const InventoryCard = ({ inventory }) => {
     }, [quantity])
 
 
+    const dt = new Date(date).toDateString()
+
+
     return (
         <Col>
             <Card className='inventory_card h-100'>
@@ -34,7 +37,10 @@ const InventoryCard = ({ inventory }) => {
                         <span className="text-dark me-2"> price: </span>
                         <span className='tk'> &#2547;</span>{parseInt(price).toLocaleString()}/=
                     </h5>
-                    <h6 className='text-secondary mb-3 fw-bold'> supplied by {supplier} </h6>
+                    <p>
+                        <h6 className='text-secondary mb-0 d-inline fw-bold'> supplied by {supplier}</h6>  
+                        <small className='text-lowercase'> on {dt} </small>
+                    </p>
                     <Card.Text className="text-justify">
                         {
                             description.length > 140 ? (
