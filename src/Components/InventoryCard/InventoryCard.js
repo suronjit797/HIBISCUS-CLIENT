@@ -37,10 +37,10 @@ const InventoryCard = ({ inventory }) => {
                         <span className="text-dark me-2"> price: </span>
                         <span className='tk'> &#2547;</span>{parseInt(price).toLocaleString()}/=
                     </h5>
-                    <p>
-                        <h6 className='text-secondary mb-0 d-inline fw-bold'> supplied by {supplier}</h6>  
+                    <div>
+                        <h6 className='text-secondary mb-0 d-inline fw-bold'> supplied by {supplier}</h6>
                         <small className='text-lowercase'> on {dt} </small>
-                    </p>
+                    </div>
                     <Card.Text className="text-justify">
                         {
                             description.length > 140 ? (

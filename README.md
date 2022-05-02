@@ -1,11 +1,11 @@
 
-# Getting Started with Create React App
+# An inventory website named 'HIBISCUS'
 
 Welcome to this website [HIBISCUS](https://assignment-11-c705a.web.app/).
 
 ## About this project
 
-This project make this manage Inventory website for an Assignment and Have something to modify. I try to make this site simple use react, css, bootstrap, fontawesome. I try to use neumorphism in some section.
+This project make manage Inventory website for an Assignment and Have something to modify. I try to make this site simple use react, css, bootstrap, fontawesome. I try to use neumorphism in some section.
 
 ## Features
 
@@ -19,7 +19,7 @@ This project make this manage Inventory website for an Assignment and Have somet
 
 
 ## 🛠 My Skills
-HTML, CSS, JavaScript, React, JSX, RegEx, React-Router-Dom, React-Toastify, Axios, Bootstrap, React-bootstrap, tailwind css, meterial ui, Firebase, Express, Cors, MongoDB...
+HTML, CSS, JavaScript, React, JSX, RegEx, React-Router-Dom, React-Toastify, Axios, Bootstrap, React-bootstrap, tailwind css, material ui, Firebase, Express, Cors, MongoDB...
 
 ## 🛠 Use in this projects
 - JSX
@@ -29,8 +29,8 @@ HTML, CSS, JavaScript, React, JSX, RegEx, React-Router-Dom, React-Toastify, Axio
 - JavaScript
 - React
 - Firebase
-- Express
-- MongoDB 
+- Connect with Express
+- fetch MongoDB data
 
 
 ## Installation

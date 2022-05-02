@@ -31,7 +31,7 @@ function App() {
 
 
   // fire base
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   // loading spinner
   if (loading) {

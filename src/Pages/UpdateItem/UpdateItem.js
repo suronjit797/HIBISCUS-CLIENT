@@ -70,6 +70,7 @@ const UpdateItem = () => {
 
     // single products delivered handler
     const handleDelivered = () => {
+        console.log(quantity);
         if (quantity > 0) {
             axios.put(`/api/inventory/${id}`, { quantity: quantity - 1 })
                 .then(res => {
@@ -88,7 +89,7 @@ const UpdateItem = () => {
 
     // handle delivery 
     const handleDeliveredQuantity = () => {
-        toast.info('this feature will be available soon', { theme: 'colored' })
+        // toast.info('this feature will be available soon', { theme: 'colored' })
 
         if (addQuantity > quantity) {
             toast.warning("You haven't enough item to delivered", { theme: 'colored' })
@@ -151,7 +152,7 @@ const UpdateItem = () => {
                                 <button
                                     className="btn neomorphs_btn primary_btn d-inline-block mt-3 px-5"
                                     onClick={handleDelivered}
-                                > <span>Delivered</span> </button>
+                                > <span>Delivered one </span> </button>
                             </div>
                         </div>
                     </div>

@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import FirebaseErrorMsg from '../../Components/firebaseErrorMsg';
 import SocialSignIn from '../../Components/SocialSignIn/SocialSignIn';
 import auth from '../../firebase.init';
+import axios from 'axios'
 
 
 import './Login.css'
@@ -29,7 +30,6 @@ const Login = () => {
         signError,
     ] = useSignInWithEmailAndPassword(auth);
 
-
     // for error message
     useEffect(() => {
         if (signError) {
@@ -37,11 +37,18 @@ const Login = () => {
         }
     }, [signError])
 
-
     // login submit handler
     const handleSubmit = event => {
         event.preventDefault()
         signInWithEmailAndPassword(email, password)
+
+        // jwt token
+        axios.post('/api/user/login', { email })
+            .then(res => {
+                console.log(res.data.token)
+                localStorage.setItem('auth_token', res.data.tokenp)
+            })
+            .catch(error => console.log(error))
     }
 
     // password reset handler
@@ -60,7 +67,7 @@ const Login = () => {
 
     // navigate to home
     if (signUser) {
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
     }
 
     return (
