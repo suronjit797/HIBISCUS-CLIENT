@@ -49,7 +49,26 @@ const UpdateItem = () => {
 
     const dt = new Date(date).toDateString()
 
-    // delivered handler
+    // add products handler
+    const handleAddQuantity = () => {
+        if (addQuantity > 100) {
+            toast.warning('You can add maximum 100 products quantity', { theme: 'colored' })
+        } else if (addQuantity <= 0) {
+            toast.warning('You you have minimum one product to add products quantity', { theme: 'colored' })
+        } else {
+            const addQuantityUpdate = parseInt(quantity) + parseInt(addQuantity)
+            axios.put(`/api/inventory/${id}`, { quantity: addQuantityUpdate })
+                .then(res => {
+                    setLoading(true)
+                    setAddQuantity(0)
+                    toast.success('successfully add item', { theme: 'colored' })
+                })
+                .catch(error => console.log(error))
+        }
+    }
+
+
+    // single products delivered handler
     const handleDelivered = () => {
         if (quantity > 0) {
             axios.put(`/api/inventory/${id}`, { quantity: quantity - 1 })
@@ -60,20 +79,25 @@ const UpdateItem = () => {
                 })
                 .catch(error => console.log(error))
         } else {
-            toast.warning('No items available to delivered', { theme: 'colored' })
+            toast.warning("You haven't enough item to delivered", { theme: 'colored' })
         }
     }
 
-    // add products handler
-    const handleAddQuantity = () => {
-        if (addQuantity > 100) {
-            toast.warning('You can add maximum 100 products quantity', { theme: 'colored' })
+
+
+
+    // handle delivery 
+    const handleDeliveredQuantity = () => {
+        toast.info('this feature will be available soon', { theme: 'colored' })
+
+        if (addQuantity > quantity) {
+            toast.warning("You haven't enough item to delivered", { theme: 'colored' })
         } else if (addQuantity <= 0) {
-            toast.warning('You you have minimum one product to add products quantity', { theme: 'colored' })
+            toast.warning('You you have minimum one product to delivered', { theme: 'colored' })
         } else {
-            axios.put(`/api/inventory/${id}`, { quantity: parseInt(quantity) + parseInt(addQuantity) })
+            const deliveredQuantity = parseInt(quantity) - parseInt(addQuantity)
+            axios.put(`/api/inventory/${id}`, { quantity: deliveredQuantity })
                 .then(res => {
-                    console.log(res.data)
                     setLoading(true)
                     setAddQuantity(0)
                     toast.success('successfully add item', { theme: 'colored' })
@@ -81,11 +105,8 @@ const UpdateItem = () => {
                 .catch(error => console.log(error))
         }
     }
+    // handle delivered end 
 
-
-    const handleDeliveredQuantity = () => {
-        toast.info('this feature will be available soon', { theme: 'colored' })
-    }
 
     return (
         <div className="updateItem">
@@ -94,7 +115,6 @@ const UpdateItem = () => {
                     <div className="row gx-4 align-items-stretch">
                         <div className="col-md-4">
                             <div className="position-relative inventory_image h-100">
-
                                 <img src={image} className="img-fluid rounded-start h-100 w-100" alt="..." />
                                 <b
                                     className={` position-absolute end-0 top-0 rounded_custom-left px-3 py-2 text-white bg-${quantityClass} `}>
@@ -128,7 +148,6 @@ const UpdateItem = () => {
                                         <button className="btn btn-success" onClick={handleAddQuantity}> Add </button>
                                     </div>
                                 </div>
-
                                 <button
                                     className="btn neomorphs_btn primary_btn d-inline-block mt-3 px-5"
                                     onClick={handleDelivered}
