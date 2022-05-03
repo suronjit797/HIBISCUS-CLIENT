@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 const MyItems = () => {
     const [myItems, setMyItems] = useState([])
     const [show, setShow] = useState(false);
-    const [removeItem, setRemoveItem] = useState({})
+    const [removeItem, setRemoveItem] = useState({})   //have to remove in 42 line
     const [loading, setLoading] = useState(true)
     // fire base
     const [user, userLoading] = useAuthState(auth);

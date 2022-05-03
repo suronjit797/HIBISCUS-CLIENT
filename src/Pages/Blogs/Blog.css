@@ -1,0 +1,24 @@
+.blog .my_form{
+    max-width: 800px;
+}
+.blog .my_form textarea{
+    resize: none;
+}
+
+.single_blog{
+    border-radius: 10px;
+    margin: 20px 0;
+    padding: 20px;
+    box-shadow: var(--box_shadow-up);
+    position: relative;
+}
+
+.single_blog .close_btn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+}

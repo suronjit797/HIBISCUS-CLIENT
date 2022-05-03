@@ -6,6 +6,7 @@ import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import FirebaseErrorMsg from '../../Components/firebaseErrorMsg';
 import SocialSignIn from '../../Components/SocialSignIn/SocialSignIn';
+import axios from 'axios';
 
 
 const Register = () => {
@@ -34,18 +35,17 @@ const Register = () => {
     // submit handler
     const handleSubmit = async (event) => {
         event.preventDefault()
-
         // password must be 6 character
         if (password.length < 6) {
             return toast.error('Password Must be 6 Character', { theme: "colored" })
         }
-
         // confirm password check
         if (password !== confirmPassword) {
             return toast.error('Password Does not match', { theme: "colored" })
         }
         await createUserWithEmailAndPassword(email, password)
         await updateProfile({ displayName: name });
+
     }
 
     useEffect(() => {
@@ -57,6 +57,13 @@ const Register = () => {
 
     if (emailUser) {
         navigate(from, { replace: true });
+        // jwt token
+        axios.post('/api/user/login', { email, role: 'user' })   //have to make role dynamic
+            .then(res => {
+                console.log(res.data.token)
+                localStorage.setItem('auth_token', res.data.token)
+            })
+            .catch(error => console.log(error))
     }
 
     if (emailLoading || updating) {
