@@ -25,15 +25,13 @@ const RequireAuth = ({ children }) => {
 
     useEffect(() => {
         const auth_token = localStorage.getItem('auth_token')
-        console.log(auth_token)
         axios.get('/api/user/jwt-verify', {
             headers: {
                 Authorization: `Bearer ${auth_token}`
             }
         })
-            .then(res => console.log(res.data))
+            .then(res => '')
             .catch(error => {
-                console.dir(error.message)
                 if (error.request.status === 403 || error.request.status === 401 || error.request.status === 404) {
                     toast.error(error.message, { theme: 'colored' })
                     signOut(auth)

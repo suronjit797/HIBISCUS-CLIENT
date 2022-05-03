@@ -9,6 +9,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
+import Pagination from '../../Components/Pagination/Pagination';
 
 
 const MyItems = () => {
@@ -43,9 +44,10 @@ const MyItems = () => {
             })
     }, [user, loading])
 
-    useEffect(()=>{
+    useEffect(() => {
         document.title = 'My Items - HIBISCUS'
-    },[])
+    }, [])
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -110,6 +112,7 @@ const MyItems = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <Pagination />
         </div>
     );
 };

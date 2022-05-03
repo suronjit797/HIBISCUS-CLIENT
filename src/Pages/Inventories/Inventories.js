@@ -2,21 +2,35 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Row, Spinner } from 'react-bootstrap';
 import InventoryCard from '../../Components/InventoryCard/InventoryCard';
+import Pagination from '../../Components/Pagination/Pagination';
 
 const Inventories = () => {
     const [inventories, setInventories] = useState([])
     const [loading, setLoading] = useState(true)
+
+    const [itemPerPage, setItemPerPage] = useState(9)
+    const [pageNumber, setItemPageNumber] = useState('')
+    const [currentPage, setCurrentPage] = useState(0)
+
+
     useEffect(() => {
-        axios.get('/api/inventory')
+        const skip = currentPage * itemPerPage
+        axios.get(`/api/inventory?limits=${itemPerPage}&skip=${skip}`)
             .then(res => {
                 setInventories(res.data)
                 setLoading(false)
             })
-    }, [loading])
+    }, [loading, currentPage, itemPerPage])
 
-    useEffect(()=>{
+    useEffect(() => {
+        axios.get('/api/inventory/count')
+            .then(res => setItemPageNumber(Math.ceil(parseInt(res.data.result) / parseInt(itemPerPage))))
+            .catch(error => console.dir(error))
+    }, [itemPerPage])
+
+    useEffect(() => {
         document.title = 'Inventory - HIBISCUS'
-    },[])
+    }, [])
 
     // loading spinner
     if (loading) {
@@ -37,8 +51,12 @@ const Inventories = () => {
                     }
                 </Row>
             </div>
-
-            {/* have to add pagination */}
+            <Pagination
+                pageNumber={pageNumber}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                setLoading={setLoading}
+            />
         </div>
     );
 };

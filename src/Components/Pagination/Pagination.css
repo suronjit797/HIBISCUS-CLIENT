@@ -1,0 +1,28 @@
+.pagination{
+    box-shadow: var(--box_shadow-up);
+    padding: 10px;
+    display: inline-block;
+}
+
+.pagination button{
+    box-shadow: var(--box_shadow-up);
+    border: 0;
+    padding: 6px 15px;
+    margin: 0 5px;
+    transition: .2s ease;
+    color: rgba(0, 0, 0, 0.596);
+    font-weight: 500;
+    user-select: none;
+}
+.pagination button:hover{
+    box-shadow: none;
+}
+.pagination button:disabled{
+    cursor: no-drop;
+    pointer-events: none;
+    color: rgba(124, 124, 124, 0.596);
+}
+
+.pagination button:active, .pagination button.active{
+    box-shadow: var(--box_shadow-down);
+}
