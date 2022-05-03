@@ -46,7 +46,7 @@ const Login = () => {
         axios.post('/api/user/login', { email })
             .then(res => {
                 console.log(res.data.token)
-                localStorage.setItem('auth_token', res.data.tokenp)
+                localStorage.setItem('auth_token', res.data.token)
             })
             .catch(error => console.log(error))
     }
@@ -67,7 +67,7 @@ const Login = () => {
 
     // navigate to home
     if (signUser) {
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
     }
 
     return (

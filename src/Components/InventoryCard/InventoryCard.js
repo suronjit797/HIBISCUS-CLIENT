@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './InventoryCard.css'
 
-const InventoryCard = ({ inventory }) => {
+const InventoryCard = ({ inventory, children }) => {
     const { _id, name, date, image, description, price, quantity, supplier } = inventory
 
     const [quantityClass, setQuantityClass] = useState('danger')
@@ -18,14 +18,15 @@ const InventoryCard = ({ inventory }) => {
             setQuantityClass('danger')
         }
     }, [quantity])
-
-
     const dt = new Date(date).toDateString()
-
-
     return (
         <Col>
             <Card className='inventory_card h-100'>
+
+                {/* {
+                    children
+                } */}
+
                 <div className="inventory_image">
                     <Card.Img variant="top" src={image} />
                 </div>
@@ -63,6 +64,9 @@ const InventoryCard = ({ inventory }) => {
                         }
                     </div>
                     <Link to={`/update-item/${_id}`} className="btn neomorphs_btn primary_btn  bg-secondary text-light my-3 w-100"> <span> Manage Stock  </span></Link>
+                    {
+                        children
+                    }
                 </div>
             </Card>
         </Col>

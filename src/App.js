@@ -25,6 +25,8 @@ import AddItems from './Pages/AddItems/AddItems';
 import MyItems from './Pages/MyItems/MyItems';
 import Blogs from './Pages/Blogs/Blogs';
 import UpdateItem from './Pages/UpdateItem/UpdateItem';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
 
   // fire base
   const [user, loading] = useAuthState(auth);
+
 
   // loading spinner
   if (loading) {

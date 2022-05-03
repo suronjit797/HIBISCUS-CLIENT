@@ -9,6 +9,7 @@ import { faFacebookF, faGithub, faGoogle } from '@fortawesome/free-brands-svg-ic
 
 import './SocialSignIn.css'
 import { Spinner } from 'react-bootstrap';
+import axios from 'axios';
 
 const SocialSignIn = () => {
 
@@ -21,8 +22,6 @@ const SocialSignIn = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
     const [signInWithGithub, githubUser, githubLoading, githubError] = useSignInWithGithub(auth);
-
-
     // error toast
     useEffect(() => {
         if (googleError) {
@@ -40,10 +39,24 @@ const SocialSignIn = () => {
         }
     }, [githubError])
 
-    // navigate to target pages
-    if (googleUser || facebookUser || githubUser) {
-        navigate(from, { replace: true });
-    }
+    // user token
+    useEffect(() => {
+        // navigate to target pages
+        if (googleUser) {
+            const email = googleUser.user.email
+            // jwt token
+            axios.post('/api/user/login', { email })
+                .then(res => {
+                    console.log(res.data.token)
+                    localStorage.setItem('auth_token', res.data.token)
+                    navigate(from, { replace: true });
+                })
+                .catch(error => console.log(error))
+        }
+    }, [googleUser])
+
+
+
 
     // spinner
     if (googleLoading || facebookLoading || githubLoading) {
