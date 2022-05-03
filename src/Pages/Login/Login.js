@@ -39,6 +39,10 @@ const Login = () => {
         }
     }, [signError, resetError])
 
+    useEffect(()=>{
+        document.title = 'Login - HIBISCUS'
+    },[])
+
 
     // login submit handler
     const handleSubmit = event => {

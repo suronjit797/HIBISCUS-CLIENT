@@ -35,6 +35,10 @@ const UpdateItem = () => {
             .catch(error => console.log(error))
     }, [id, loading])
 
+    useEffect(()=>{
+        document.title = 'Update item - HIBISCUS'
+    },[])
+
 
 
     // loading spinner

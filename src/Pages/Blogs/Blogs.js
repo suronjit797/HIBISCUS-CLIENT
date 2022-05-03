@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import jwt_decode from "jwt-decode";
 import { Spinner } from 'react-bootstrap';
 import axios from 'axios'
 
@@ -14,10 +13,11 @@ const Blogs = () => {
     const [answer, setAnswer] = useState('')
     const [loading, setLoading] = useState(true)
 
+    const [role, setRole] = useState('user')   //have to make with server
+
 
     // get auth token form localStorage adn decoded
     const auth_token = localStorage.getItem('auth_token')
-    const decoded = auth_token ? jwt_decode(auth_token) : {}
 
     // side effect
     useEffect(() => {
@@ -27,11 +27,19 @@ const Blogs = () => {
         setLoading(false)
     }, [loading])
 
+    useEffect(()=>{
+        document.title = 'Blogs - HIBISCUS'
+    },[])
+
     // handle blog submit
-    const handleSubmit = event => {
+    const handleSubmitPost = event => {
         event.preventDefault()
-        const post = { question, answer, email: decoded?.email }
-        axios.post('/api/blog', { post })
+        const post = { question, answer }
+        axios.post('/api/blog', { post }, {
+            headers: {
+                Authorization: `Bearer ${auth_token}`
+            }
+        })
             .then(res => setLoading(true))
             .catch(error => console.log(error))
 
@@ -54,8 +62,8 @@ const Blogs = () => {
     return (
         <div className="container my-4">
             <div className='blog'>
-                <div className={`my - 5 my_form ${decoded?.role !== 'admin' ? 'd-none' : ''} `}>  {/* after add role remove d-none */}
-                    <form onSubmit={handleSubmit} className='w-100'>
+                <div className={`my - 5 my_form ${role !== 'admin' ? 'd-none' : ''} `}>  {/* after add role remove d-none */}
+                    <form onSubmit={handleSubmitPost} className='w-100'>
                         <input type="text"
                             name="question"
                             id="question"
@@ -80,12 +88,13 @@ const Blogs = () => {
                 </div>
 
                 <div className="blog_body">
+                    <h2 className='text-center mb-4'> Blogs page </h2>
                     {
                         blogs.map(blog => (
                             <SingleBlog
                                 key={blog._id}
                                 blog={blog}
-                                role={decoded.role}
+                                role={role}
                                 setLoading={setLoading}
                             />
                         ))

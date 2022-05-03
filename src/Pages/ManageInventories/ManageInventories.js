@@ -23,6 +23,9 @@ const ManageInventories = () => {
                 setLoading(false)
             })
     }, [loading])
+    useEffect(()=>{
+        document.title = 'Mange Inventory - HIBISCUS'
+    },[])
 
     // handler
     const handleClose = () => setShow(false);

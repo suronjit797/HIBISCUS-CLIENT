@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './NotFound.css'
 
 const NotFound = () => {
+    useEffect(()=>{
+        document.title = '4O4 Not found'
+    },[])
     return (
         <div className='notFound text-center'>
             <h1 className='fw-bold'> Opps!!! </h1>

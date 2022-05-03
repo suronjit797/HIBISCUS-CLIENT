@@ -7,9 +7,14 @@ import InventoryCard from '../../Components/InventoryCard/InventoryCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
 
 
 const MyItems = () => {
+
+    const navigate = useNavigate()
+
     const [myItems, setMyItems] = useState([])
     const [show, setShow] = useState(false);
     const [removeItem, setRemoveItem] = useState({})   //have to remove in 42 line
@@ -28,8 +33,19 @@ const MyItems = () => {
                 setMyItems(res.data)
                 setLoading(false)
             })
-            .catch(error => console.log(error.message))
+            .catch(error => {
+                if (error.request.status === 403 || error.request.status === 401) {
+                    toast.error(error.message, { theme: 'colored' })
+                    // signOut(auth)
+                    navigate('/login')
+                    return
+                }
+            })
     }, [user, loading])
+
+    useEffect(()=>{
+        document.title = 'My Items - HIBISCUS'
+    },[])
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

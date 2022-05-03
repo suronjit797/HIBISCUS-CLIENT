@@ -54,6 +54,10 @@ const Register = () => {
         }
     }, [emailError])
 
+    useEffect(()=>{
+        document.title = 'Register - HIBISCUS'
+    },[])
+
 
     if (emailUser) {
         navigate(from, { replace: true });

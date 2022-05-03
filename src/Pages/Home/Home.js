@@ -21,6 +21,10 @@ const Home = () => {
             .then(res => setInventories(res.data))
     }, [])
 
+    useEffect(()=>{
+        document.title = 'Home - HIBISCUS'
+    },[])
+
 
 
 

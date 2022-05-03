@@ -14,6 +14,10 @@ const Inventories = () => {
             })
     }, [loading])
 
+    useEffect(()=>{
+        document.title = 'Inventory - HIBISCUS'
+    },[])
+
     // loading spinner
     if (loading) {
         return (

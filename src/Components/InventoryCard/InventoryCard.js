@@ -31,18 +31,18 @@ const InventoryCard = ({ inventory, children }) => {
                     <Card.Img variant="top" src={image} />
                 </div>
                 <Card.Body className='text-capitalize'>
-                    <Card.Title className='text-success fw-bold'>
+                    <Card.Title className='text-success mb-0 fw-bold'>
                         {name}
                     </Card.Title>
-                    <h5 className="fw-bold text-primary">
+                    <h5 className="fw-bold text-primary my-1">
                         <span className="text-dark me-2"> price: </span>
                         <span className='tk'> &#2547;</span>{parseInt(price).toLocaleString()}/=
                     </h5>
                     <div>
-                        <h6 className='text-secondary mb-0 d-inline fw-bold'> supplied by {supplier}</h6>
+                        <h6 className='text-secondary mb-0 d-inline fw-bold'> supplied by {supplier}.</h6>
                         <small className='text-lowercase'> on {dt} </small>
                     </div>
-                    <Card.Text className="text-justify">
+                    <Card.Text className="text-justify mt-3">
                         {
                             description.length > 140 ? (
                                 <>

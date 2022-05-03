@@ -47,7 +47,6 @@ const SocialSignIn = () => {
             // jwt token
             axios.post('/api/user/login', { email, role: 'admin' })  //change roll dynamic
                 .then(res => {
-                    console.log(res.data.token)
                     localStorage.setItem('auth_token', res.data.token)
                     navigate(from, { replace: true });
                 })

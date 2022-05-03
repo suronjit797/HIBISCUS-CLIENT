@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import axios from 'axios'
@@ -23,6 +23,11 @@ const AddItems = () => {
         DD = '0' + DD;
     }
 
+
+    useEffect(()=>{
+        document.title = 'Add item - HIBISCUS'
+    },[])
+
     // states
     const [name, setName] = useState('')
     const [image, setImage] = useState('')
@@ -35,11 +40,10 @@ const AddItems = () => {
     // fire base
     const [user] = useAuthState(auth);
     const email = user.email
-    //  name, date, image, description, price, quantity, supplier email
+
 
     const handleAddItems = event => {
         event.preventDefault()
-
         // validation for add data
         if (!image) {
             return toast.error('Please choose a image for your products', { theme: "colored" })
