@@ -27,9 +27,20 @@ const Blogs = () => {
         setLoading(false)
     }, [loading])
 
-    useEffect(()=>{
+    useEffect(() => {
+        axios.get('/api/user/jwt-verify', {
+            headers: {
+                Authorization: `Bearer ${auth_token}`
+            }
+        })
+            .then(res => setRole(res.data.role))
+            .catch(error => setRole('user'))
+        setLoading(false)
+    }, [loading, auth_token])
+
+    useEffect(() => {
         document.title = 'Blogs - HIBISCUS'
-    },[])
+    }, [])
 
     // handle blog submit
     const handleSubmitPost = event => {
@@ -62,7 +73,7 @@ const Blogs = () => {
     return (
         <div className="container my-4">
             <div className='blog'>
-                <div className={`my - 5 my_form ${role !== 'admin' ? 'd-none' : ''} `}>  {/* after add role remove d-none */}
+                <div className={`my-5 my_form ${role !== 'admin' ? 'd-none' : ''} `}>  {/* after add role remove d-none */}
                     <form onSubmit={handleSubmitPost} className='w-100'>
                         <input type="text"
                             name="question"

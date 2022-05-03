@@ -21,7 +21,7 @@ const SingleBlog = ({ blog, role, setLoading }) => {
             <h3 className='text-primary'> {question}? </h3>
             <p> {answer} </p>
             <button
-                className={`text-danger close_btn d-none ${role !== 'admin' ? 'd-none' : ''}`} //after role remove d-none
+                className={`text-danger close_btn ${role !== 'admin' ? 'd-none' : ''}`} //implement role system
                 title='Remove your items'
                 onClick={handleRemoveBlog}
             >

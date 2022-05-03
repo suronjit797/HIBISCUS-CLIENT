@@ -23,9 +23,26 @@ const MyItems = () => {
     // fire base
     const [user, userLoading] = useAuthState(auth);
 
+    // pagination
+    const [itemPerPage, setItemPerPage] = useState(9)
+    const [pageNumber, setItemPageNumber] = useState('')
+    const [currentPage, setCurrentPage] = useState(0)
+    const auth_token = localStorage.getItem('auth_token')
+
+    // total my item count
     useEffect(() => {
-        const auth_token = localStorage.getItem('auth_token')
-        axios.get('/api/my-items', {
+        axios.get('/api/my-item/count', {
+            headers: {
+                Authorization: `Bearer ${auth_token}`
+            }
+        })
+            .then(res => setItemPageNumber(Math.ceil(parseInt(res.data.result) / parseInt(itemPerPage))))
+            .catch(error => console.dir(error))
+    }, [itemPerPage, auth_token])
+
+    useEffect(() => {
+        const skip = currentPage * itemPerPage
+        axios.get(`/api/my-items?limits=${itemPerPage}&skip=${skip}`, {
             headers: {
                 Authorization: `Bearer ${auth_token}`
             }
@@ -42,7 +59,7 @@ const MyItems = () => {
                     return
                 }
             })
-    }, [user, loading])
+    }, [user, loading, currentPage, itemPerPage, auth_token])
 
     useEffect(() => {
         document.title = 'My Items - HIBISCUS'
@@ -112,7 +129,19 @@ const MyItems = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <Pagination />
+            {/* pagination */}
+            {
+                pageNumber > 0 && <div className="mt-4">
+                    <Pagination
+                        pageNumber={pageNumber}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        setLoading={setLoading}
+                        setItemPerPage={setItemPerPage}
+                        itemPerPage={itemPerPage}
+                    />
+                </div>
+            }
         </div>
     );
 };

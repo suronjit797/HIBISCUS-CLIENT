@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import Pagination from '../../Components/Pagination/Pagination';
 
 
 import './ManageInventories.css'
@@ -16,16 +17,41 @@ const ManageInventories = () => {
     const [removeItem, setRemoveItem] = useState({})
     const [loading, setLoading] = useState(true)
 
+    // pagination
+    const [itemPerPage, setItemPerPage] = useState(9)
+    const [pageNumber, setItemPageNumber] = useState('')
+    const [currentPage, setCurrentPage] = useState(0)
+
     useEffect(() => {
-        axios.get('/api/inventory/')
+        const skip = currentPage * itemPerPage
+        axios.get(`/api/inventory?limits=${itemPerPage}&skip=${skip}`)
             .then(res => {
                 setInventories(res.data)
                 setLoading(false)
             })
-    }, [loading])
-    useEffect(()=>{
+    }, [loading, currentPage, itemPerPage])
+
+    useEffect(() => {
+        axios.get('/api/inventory/count')
+            .then(res => setItemPageNumber(Math.ceil(parseInt(res.data.result) / parseInt(itemPerPage))))
+            .catch(error => console.dir(error))
+    }, [itemPerPage])
+
+
+
+
+
+    useEffect(() => {
+        const skip = currentPage * itemPerPage
+        axios.get(`/api/inventory?limits=${itemPerPage}&skip=${skip}`)
+            .then(res => {
+                setInventories(res.data)
+                setLoading(false)
+            })
+    }, [loading, currentPage, itemPerPage])
+    useEffect(() => {
         document.title = 'Mange Inventory - HIBISCUS'
-    },[])
+    }, [])
 
     // handler
     const handleClose = () => setShow(false);
@@ -33,8 +59,8 @@ const ManageInventories = () => {
 
     const handleRemove = () => {
         setShow(false);
-        
-        axios.delete(`/api/inventory/${removeItem.id}`, {data: { image: removeItem.image }})
+
+        axios.delete(`/api/inventory/${removeItem.id}`, { data: { image: removeItem.image } })
             .then(res => setLoading(true))
             .catch(error => console.log(error))
     }
@@ -82,25 +108,35 @@ const ManageInventories = () => {
                         }
                     </tbody>
                 </Table>
+                {/* pagination */}
+                {
+                    pageNumber > 0 && <div className="mt-4">
+                        <Pagination
+                            pageNumber={pageNumber}
+                            currentPage={currentPage}
+                            setCurrentPage={setCurrentPage}
+                            setLoading={setLoading}
+                            setItemPerPage={setItemPerPage}
+                            itemPerPage={itemPerPage}
+                        />
+                    </div>
+                }
             </div>
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header className='bg-danger text-light'>
-                        <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Are you sure want to delete this item</Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="danger" onClick={handleRemove}>
-                            Delete Item
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header className='bg-danger text-light'>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure want to delete this item</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="danger" onClick={handleRemove}>
+                        Delete Item
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
-
-
-            {/* have to add pagination */}
         </div>
     );
 };

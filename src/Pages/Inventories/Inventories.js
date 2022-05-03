@@ -8,10 +8,11 @@ const Inventories = () => {
     const [inventories, setInventories] = useState([])
     const [loading, setLoading] = useState(true)
 
+
+    // pagination
     const [itemPerPage, setItemPerPage] = useState(9)
     const [pageNumber, setItemPageNumber] = useState('')
     const [currentPage, setCurrentPage] = useState(0)
-
 
     useEffect(() => {
         const skip = currentPage * itemPerPage
@@ -22,6 +23,7 @@ const Inventories = () => {
             })
     }, [loading, currentPage, itemPerPage])
 
+    // total item count
     useEffect(() => {
         axios.get('/api/inventory/count')
             .then(res => setItemPageNumber(Math.ceil(parseInt(res.data.result) / parseInt(itemPerPage))))
@@ -50,13 +52,20 @@ const Inventories = () => {
                         inventories.map(inventory => <InventoryCard key={inventory._id} inventory={inventory} />)
                     }
                 </Row>
+                {/* pagination */}
+                {
+                    pageNumber > 0 && <div className="mt-4">
+                        <Pagination
+                            pageNumber={pageNumber}
+                            currentPage={currentPage}
+                            setCurrentPage={setCurrentPage}
+                            setLoading={setLoading}
+                            setItemPerPage={setItemPerPage}
+                            itemPerPage={itemPerPage}
+                        />
+                    </div>
+                }
             </div>
-            <Pagination
-                pageNumber={pageNumber}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                setLoading={setLoading}
-            />
         </div>
     );
 };

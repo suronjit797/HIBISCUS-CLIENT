@@ -13,9 +13,12 @@
     color: rgba(0, 0, 0, 0.596);
     font-weight: 500;
     user-select: none;
+    border-radius: 5px;
+    background-color: transparent;
 }
 .pagination button:hover{
     box-shadow: none;
+    background-color: rgba(255, 255, 255, 0.315);
 }
 .pagination button:disabled{
     cursor: no-drop;
@@ -25,4 +28,15 @@
 
 .pagination button:active, .pagination button.active{
     box-shadow: var(--box_shadow-down);
+    background-color: transparent;
+}
+
+.pagination select{
+    margin-left: 10px;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    box-shadow: var(--box_shadow-down);
+    outline: transparent;
+    border-radius: 5px;
 }
