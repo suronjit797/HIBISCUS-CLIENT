@@ -31,7 +31,7 @@ const InventoryCard = ({ inventory, children }) => {
                     <Card.Img variant="top" src={image} />
                 </div>
                 <Card.Body className='text-capitalize'>
-                    <Card.Title>
+                    <Card.Title className='text-success fw-bold'>
                         {name}
                     </Card.Title>
                     <h5 className="fw-bold text-primary">

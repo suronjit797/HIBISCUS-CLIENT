@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Spinner } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Button, Form, Modal, Spinner } from 'react-bootstrap';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import FirebaseErrorMsg from '../../Components/firebaseErrorMsg';
@@ -15,7 +15,10 @@ import './Login.css'
 const Login = () => {
     // form state
     const [email, setEmail] = useState('')
+    const [resetEmail, setResetEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [show, setShow] = useState(false);
+
 
     // for location
     let navigate = useNavigate();
@@ -24,18 +27,18 @@ const Login = () => {
 
     // firebase hooks
     const [
-        signInWithEmailAndPassword,
-        signUser,
-        signLoading,
-        signError,
-    ] = useSignInWithEmailAndPassword(auth);
+        signInWithEmailAndPassword, signUser, signLoading, signError,] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth)
 
     // for error message
     useEffect(() => {
         if (signError) {
             toast.error(FirebaseErrorMsg(signError.message), { theme: "colored" })
+        } else if (resetError) {
+            toast.error(FirebaseErrorMsg(resetError.message), { theme: "colored" })
         }
-    }, [signError])
+    }, [signError, resetError])
+
 
     // login submit handler
     const handleSubmit = event => {
@@ -51,13 +54,19 @@ const Login = () => {
             .catch(error => console.log(error))
     }
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     // password reset handler
-    const handleResetPassword = () => {
-        toast.error('Processing Reset Password...', { theme: "colored" })
+    const handleResetPassword = event => {
+        event.preventDefault()
+        sendPasswordResetEmail(resetEmail)
+        toast.info('Processing Reset Password. Please check you gmail account', { theme: "colored" })
+        setShow(false);
     }
 
     // loading spinner
-    if (signLoading) {
+    if (signLoading || sending) {
         return (
             <section className="centerSpinner">
                 <Spinner animation="border" variant="primary" />
@@ -94,7 +103,7 @@ const Login = () => {
                     // autoComplete='off'
                     required
                 />
-                <b className='mb-3 d-block cursor-pointer text-primary' onClick={handleResetPassword}>
+                <b className='mb-3 d-block cursor-pointer text-primary' onClick={handleShow}>
                     Forgotten password?
                 </b>
 
@@ -102,6 +111,35 @@ const Login = () => {
                 <p className='my-3' > Don't have an account <Link to='/register'> Register Now </Link> </p>
             </form>
             <SocialSignIn />
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title> Reset you password? </Modal.Title>
+                </Modal.Header>
+                <Form onSubmit={''}>
+                    <Modal.Body>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control
+                                type="email"
+                                placeholder="Your Email Address"
+                                value={resetEmail}
+                                required
+                                onChange={e => setResetEmail(e.target.value)}
+                                autoFocus
+                            />
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="danger" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button type='submit' variant="primary" onClick={handleResetPassword}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Form>
+            </Modal>
         </div>
     );
 };

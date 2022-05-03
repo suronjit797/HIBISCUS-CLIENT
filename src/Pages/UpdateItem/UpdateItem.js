@@ -70,11 +70,9 @@ const UpdateItem = () => {
 
     // single products delivered handler
     const handleDelivered = () => {
-        console.log(quantity);
         if (quantity > 0) {
             axios.put(`/api/inventory/${id}`, { quantity: quantity - 1 })
                 .then(res => {
-                    console.log(res.data)
                     setLoading(true)
                     toast.success('successfully delivered', { theme: 'colored' })
                 })
@@ -89,21 +87,27 @@ const UpdateItem = () => {
 
     // handle delivery 
     const handleDeliveredQuantity = () => {
-        // toast.info('this feature will be available soon', { theme: 'colored' })
-
         if (addQuantity > quantity) {
             toast.warning("You haven't enough item to delivered", { theme: 'colored' })
         } else if (addQuantity <= 0) {
             toast.warning('You you have minimum one product to delivered', { theme: 'colored' })
         } else {
             const deliveredQuantity = parseInt(quantity) - parseInt(addQuantity)
-            axios.put(`/api/inventory/${id}`, { quantity: deliveredQuantity })
-                .then(res => {
-                    setLoading(true)
-                    setAddQuantity(0)
-                    toast.success('successfully add item', { theme: 'colored' })
-                })
-                .catch(error => console.log(error))
+            toast.info('multiple delivered feature will be available soon', { theme: 'colored' })
+            setAddQuantity(0)
+
+
+            // this feature have to be update after assignment 11
+            /* 
+                        axios.put(`/api/inventory/${id}`, { quantity: deliveredQuantity })
+                            .then(res => {
+                                setLoading(true)
+                                setAddQuantity(0)
+                                toast.success('successfully add item', { theme: 'colored' })
+                            })
+                            .catch(error => console.log(error))
+             */
+            console.log(deliveredQuantity)
         }
     }
     // handle delivered end 

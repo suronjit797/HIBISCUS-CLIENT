@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 
 import './ManageInventories.css'
@@ -31,14 +30,10 @@ const ManageInventories = () => {
 
     const handleRemove = () => {
         setShow(false);
-        toast.info('remove multiple item will be available soon', { theme: 'colored' })
-
-        // this item have to available after assignment result
-        /* 
-                axios.delete(`/api/inventory/${removeItem.id}`, {data: { image: removeItem.image }})
-                    .then(res => setLoading(true))
-                    .catch(error => console.log(error))
-        */
+        
+        axios.delete(`/api/inventory/${removeItem.id}`, {data: { image: removeItem.image }})
+            .then(res => setLoading(true))
+            .catch(error => console.log(error))
     }
 
 
@@ -85,20 +80,20 @@ const ManageInventories = () => {
                     </tbody>
                 </Table>
             </div>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header className='bg-danger text-light'>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Are you sure want to delete this item</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="danger" onClick={handleRemove}>
-                        Delete Item
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header className='bg-danger text-light'>
+                        <Modal.Title>Modal heading</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Are you sure want to delete this item</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="danger" onClick={handleRemove}>
+                            Delete Item
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
 
 

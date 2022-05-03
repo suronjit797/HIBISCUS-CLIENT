@@ -9,6 +9,15 @@ import axios from 'axios'
 
 axios.defaults.baseURL = process.env.REACT_APP_PROXY
 
+const auth_token = localStorage.getItem('auth_token')
+if (auth_token) {
+  axios.defaults.headers['Authorization'] = auth_token
+} else {
+  axios.defaults.headers['Authorization'] = ''
+}
+
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
