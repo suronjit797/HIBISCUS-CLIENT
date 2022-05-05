@@ -29,6 +29,7 @@ const ManageInventories = () => {
                 setInventories(res.data)
                 setLoading(false)
             })
+            .catch(error=>console.dir(error))
     }, [loading, currentPage, itemPerPage])
 
     useEffect(() => {
@@ -48,6 +49,7 @@ const ManageInventories = () => {
                 setInventories(res.data)
                 setLoading(false)
             })
+            .catch(error=>console.dir(error))
     }, [loading, currentPage, itemPerPage])
     useEffect(() => {
         document.title = 'Mange Inventory - HIBISCUS'
@@ -79,20 +81,23 @@ const ManageInventories = () => {
     return (
         <div className="manageInventory">
             <div className='container my-5 text-capitalize'>
-                <div className="text-end mb-4">
-                    <button
-                        className="btn px-5 fw-bold neomorphs_btn text-success"
+                <div className="d-block d-md-flex align-items-center mb-4 mb-md-5">
+                    <h2 className='mb-3 mb-md-0 text-md-start text-center'> Manage <span className="text-primary"> inventories </span> </h2>
+                <button
+                        className="btn me-md-0 d-block mx-auto px-5 fw-bold neomorphs_btn text-success"
                         onClick={() => navigate('/add-items')}
                     > Add new items </button>
                 </div>
-                <Table hover>
+                <Table hover bordered >
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>supplier</th>
+                            <th>Price</th>
                             <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>supplier</th>
                             <th> Stored date </th>
-                            <th> <b>#</b> </th>
+                            <th style={{minWidth: '135px'}}> <b>#</b> </th>
                         </tr>
                     </thead>
                     <tbody>

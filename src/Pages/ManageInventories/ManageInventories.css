@@ -36,18 +36,18 @@
 
 .confirmMessageHeader,
 .confirmMessageBody {
-    padding:20px;
+    padding: 20px;
     position: relative;
 }
 
-.confirmMessageFooter button{
+.confirmMessageFooter button {
     width: 50%;
     border-radius: 0;
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
-.confirmClose{
+.confirmClose {
     position: absolute;
     top: 5px;
     right: 10px;
@@ -61,7 +61,7 @@
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
     .manageInventory table {
         box-shadow: none;
     }
@@ -78,6 +78,8 @@
         display: block;
         margin-bottom: 20px;
         box-shadow: var(--box_shadow-up);
+        border-radius: 15px;
+        overflow: hidden;
     }
 
     .manageInventory table td {
@@ -88,9 +90,14 @@
         justify-content: space-between;
     }
 
+    .manageInventory table td:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.171);
+    }
+
     .manageInventory table td::before {
         content: attr(data-level);
         font-weight: bold;
         padding-right: 10px;
+        text-align: left;
     }
 }

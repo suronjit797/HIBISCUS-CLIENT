@@ -29,15 +29,12 @@ const Pagination = ({ pageNumber, currentPage, setCurrentPage, setLoading, setIt
                     </button>
                 ))
             }
-            <button onClick={handleNext} disabled={currentPage >= (pageNumber - 1)}  className='ms-2'> Next </button>
+            <button onClick={handleNext} disabled={currentPage >= (pageNumber - 1)} className='ms-2'> Next </button>
 
             <select name="page_number" id="page_number" value={itemPerPage} onChange={e => setItemPerPage(parseInt(e.target.value))}>
-                {
-                    console.log(itemPerPage)
-                }
-                <option selected={itemPerPage === 9} value="9"> 9 </option>
-                <option selected={itemPerPage === 12} value="12"> 12 </option>
-                <option selected={itemPerPage === 15} value="15"> 15 </option>
+                <option value="9"> 9 </option>
+                <option value="12"> 12 </option>
+                <option value="15"> 15 </option>
             </select>
         </div>
     );

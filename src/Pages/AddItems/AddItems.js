@@ -76,12 +76,12 @@ const AddItems = () => {
             .catch(error => toast.error(error.message, { theme: "colored" }))
 
         // initial state set
-        // setName('')
-        // setImage('')
-        // setDescription('')
-        // setPrice('')
-        // setQuantity('')
-        // setSupplier('')
+        setName('')
+        setImage('')
+        setDescription('')
+        setPrice('')
+        setQuantity('')
+        setSupplier('')
         setDate(`${YYYY}-${MM}-${DD}`)
     }
     return (

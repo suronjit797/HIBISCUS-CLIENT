@@ -7,7 +7,7 @@ import SingleBlog from './SingleBlog';
 
 const Blogs = () => {
 
-    // statye
+    // state
     const [blogs, setBlogs] = useState([])
     const [question, setQuestion] = useState('')
     const [answer, setAnswer] = useState('')
@@ -23,7 +23,7 @@ const Blogs = () => {
     useEffect(() => {
         axios.get('/api/blog')
             .then(res => setBlogs(res.data))
-            .catch(error => console.log(error))
+            .catch(error => console.dir(error))
         setLoading(false)
     }, [loading])
 
@@ -73,44 +73,51 @@ const Blogs = () => {
     return (
         <div className="container my-4">
             <div className='blog'>
-                <div className={`my-5 my_form ${role !== 'admin' ? 'd-none' : ''} `}>  {/* after add role remove d-none */}
-                    <form onSubmit={handleSubmitPost} className='w-100'>
-                        <input type="text"
-                            name="question"
-                            id="question"
-                            className="form_control mb-3"
-                            onChange={e => setQuestion(e.target.value)}
-                            value={question}
-                            placeholder='Your question'
-                            required
-                        />
-                        <textarea
-                            name="answer"
-                            id="answer"
-                            rows='5'
-                            className="form_control mb-3"
-                            onChange={e => setAnswer(e.target.value)}
-                            value={answer}
-                            placeholder='Your answer'
-                            required
-                        />
-                        <button className="btn mt-3 neomorphs_btn w-100 fw-bold">Post </button>
-                    </form>
-                </div>
-
-                <div className="blog_body">
-                    <h2 className='text-center mb-4'> Blogs page </h2>
-                    {
-                        blogs.map(blog => (
-                            <SingleBlog
-                                key={blog._id}
-                                blog={blog}
-                                role={role}
-                                setLoading={setLoading}
+                <>
+                    <div className={`my-5 my_form ${role !== 'admin' ? 'd-none' : ''} `}>  {/* after add role remove d-none */}
+                        <form onSubmit={handleSubmitPost} className='w-100'>
+                            <input type="text"
+                                name="question"
+                                id="question"
+                                className="form_control mb-3"
+                                onChange={e => setQuestion(e.target.value)}
+                                value={question}
+                                placeholder='Your question'
+                                required
                             />
-                        ))
-                    }
-                </div>
+                            <textarea
+                                name="answer"
+                                id="answer"
+                                rows='5'
+                                className="form_control mb-3"
+                                onChange={e => setAnswer(e.target.value)}
+                                value={answer}
+                                placeholder='Your answer'
+                                required
+                            />
+                            <button className="btn mt-3 neomorphs_btn w-100 fw-bold">Post </button>
+                        </form>
+                    </div>
+                    <h2 className='text-center mb-4'> Blogs </h2>
+                </>
+                {
+                    blogs.length > 0 ? (
+                        <div className="blog_body">
+                            {
+                                blogs.map(blog => (
+                                    <SingleBlog
+                                        key={blog._id}
+                                        blog={blog}
+                                        role={role}
+                                        setLoading={setLoading}
+                                    />
+                                ))
+                            }
+                        </div>
+                    ) : (
+                        <h4 className='text-center text-danger'> No blogs found... </h4>
+                    )
+                }
             </div>
         </div >
     );

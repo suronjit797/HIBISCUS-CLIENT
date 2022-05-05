@@ -1,4 +1,4 @@
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init'
 import { Spinner } from 'react-bootstrap';
@@ -8,8 +8,6 @@ import axios from 'axios';
 import { signOut } from 'firebase/auth';
 
 const RequireAuth = ({ children }) => {
-    const navigate = useNavigate()
-
     // fire base
     const [user, loading, error] = useAuthState(auth);
     // location
@@ -19,7 +17,6 @@ const RequireAuth = ({ children }) => {
     useEffect(() => {
         if (error) {
             toast.error(error.message, { theme: "colored" })
-            console.log(error);
         }
     }, [error])
 
@@ -32,8 +29,7 @@ const RequireAuth = ({ children }) => {
         })
             .then(res => '')
             .catch(error => {
-                if (error.request.status === 403 || error.request.status === 401 || error.request.status === 404) {
-                    toast.error(error.message, { theme: 'colored' })
+                if (error.request.status === 403 || error.request.status === 401) {
                     signOut(auth)
                     return <Navigate to="/login" state={{ from: location }} replace />;
                 }

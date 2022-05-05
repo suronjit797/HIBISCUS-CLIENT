@@ -12,7 +12,10 @@ const SingleBlog = ({ blog, role, setLoading }) => {
         const confirm = window.confirm('Are you sure want to delete this post?')
         if (confirm) {
             axios.delete(`/api/blog/${_id}`)
-                .then(res => setLoading(true))
+                .then(res => {
+                    toast.success('Blog delete successfully', {theme: 'colored'})
+                    setLoading(true)
+                })
                 .catch(error => console.log(error))
         }
     }

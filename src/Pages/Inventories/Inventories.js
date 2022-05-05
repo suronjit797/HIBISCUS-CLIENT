@@ -21,6 +21,7 @@ const Inventories = () => {
                 setInventories(res.data)
                 setLoading(false)
             })
+            .catch(error => console.dir(error))
     }, [loading, currentPage, itemPerPage])
 
     // total item count

@@ -8,6 +8,7 @@ import auth from '../../firebase.init';
 import HomeBanner from './HomeBanner';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import HomeSummary from './HomeSummary';
 
 
 const Home = () => {
@@ -19,11 +20,12 @@ const Home = () => {
     useEffect(() => {
         axios.get('/api/inventory?limits=6')
             .then(res => setInventories(res.data))
-    }, [])
+            .catch(error => console.dir(error))
+    }, [user])
 
-    useEffect(()=>{
+    useEffect(() => {
         document.title = 'Home - HIBISCUS'
-    },[])
+    }, [])
 
 
 
@@ -50,8 +52,15 @@ const Home = () => {
             <HomeBanner />
 
             <div className="container">
-                <h2 className="text-center fw-bold mt-5 mb-4"> Inventory Items </h2>
 
+                {/* Inventory summary */}
+
+                <HomeSummary />
+
+
+
+                {/* inventory section */}
+                <h2 className="text-center fw-bold mt-5 mb-4"> Inventory Items </h2>
                 <div className="pmt-4 mb-5">
                     <Row xs={1} md={2} lg={3} className="g-4">
                         {

@@ -32,12 +32,12 @@ const UpdateItem = () => {
                 setProduct(res.data)
                 setLoading(false)
             })
-            .catch(error => console.log(error))
+            .catch(error => console.dir(error))
     }, [id, loading])
 
-    useEffect(()=>{
+    useEffect(() => {
         document.title = 'Update item - HIBISCUS'
-    },[])
+    }, [])
 
 
 
@@ -135,13 +135,13 @@ const UpdateItem = () => {
                         </div>
                         <div className="col-md-8">
                             <div className="card-body py-4">
-                                <h4 className="card-title mb-4"> {name} </h4>
+                                <h4 className="card-title text-primary mb-4"> {name} </h4>
                                 <p className="card-text"> {description} </p>
-                                <p className="card-text mb-1"> <b>price:</b> {parseInt(price).toLocaleString()} tk </p>
-                                <p className="card-text mb-1"> <b>total price: </b>
+                                <p className="card-text mb-1"> <b className='text-primary' >price:</b> {parseInt(price).toLocaleString()} tk </p>
+                                <p className="card-text mb-1"> <b className='text-primary' >total price: </b>
                                     {(parseInt(quantity) * parseInt(price)).toLocaleString()} tk </p>
-                                <p className="card-text"> products supplied by <b>{supplier}</b> </p>
-                                <p className="mb-0"> Added in: {dt}  </p>
+                                <p className="card-text"> products are supplied by <b className='text-primary' >{supplier}</b> </p>
+                                <p className="mb-0"> <b className="text-primary"> Added in: </b> {dt}  </p>
                                 <div>
                                     <div className='my-3 updateAddForm' >
                                         <button className="btn btn-danger" onClick={handleDeliveredQuantity} > delivered </button>

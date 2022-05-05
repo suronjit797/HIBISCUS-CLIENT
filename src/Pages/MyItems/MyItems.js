@@ -7,7 +7,7 @@ import InventoryCard from '../../Components/InventoryCard/InventoryCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import Pagination from '../../Components/Pagination/Pagination';
 
@@ -54,7 +54,7 @@ const MyItems = () => {
             .catch(error => {
                 if (error.request.status === 403 || error.request.status === 401) {
                     toast.error(error.message, { theme: 'colored' })
-                    // signOut(auth)
+                    signOut(auth)
                     navigate('/login')
                     return
                 }
@@ -93,54 +93,71 @@ const MyItems = () => {
 
     return (
         <div className='container my-5'>
-            <div className="my-items">
-                <Row lg={3} md={2} className='g-4' >
-                    {
-                        myItems.map(item => (
-                            <InventoryCard inventory={item} key={item._id}>
-                                <button
-                                    className="btn btn-danger close_btn"
-                                    title='Remove your items'
-                                    onClick={() => {
-                                        handleShow()
-                                        setRemoveItem(item)
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faXmark} />
-                                </button>
-                            </InventoryCard>
-                        ))
-                    }
-                </Row>
-            </div>
-
-            {/* modal */}
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header className='bg-danger text-light'>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Are you sure want to delete this item</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="danger" onClick={handleRemove}>
-                        Delete Item
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-            {/* pagination */}
             {
-                pageNumber > 0 && <div className="mt-4">
-                    <Pagination
-                        pageNumber={pageNumber}
-                        currentPage={currentPage}
-                        setCurrentPage={setCurrentPage}
-                        setLoading={setLoading}
-                        setItemPerPage={setItemPerPage}
-                        itemPerPage={itemPerPage}
-                    />
-                </div>
+                myItems.length <= 0 ? (
+                    <>
+                        <h3 className="text-danger text-center"> You haven't add any item.. please add some </h3>
+                        <div className="text-center mt-5"> 
+                        <Link to='/add-items' className='neomorphs_btn px-4 fw-bold text-capitalize'> go to add item </Link> 
+                        </div>
+                    </>
+                ) : (
+                    <>
+
+                        <div>
+                            <div className="my-items">
+                                <Row lg={3} md={2} className='g-4' >
+                                    {
+                                        myItems.map(item => (
+                                            <InventoryCard inventory={item} key={item._id}>
+                                                <button
+                                                    className="btn btn-danger close_btn"
+                                                    title='Remove your items'
+                                                    onClick={() => {
+                                                        handleShow()
+                                                        setRemoveItem(item)
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faXmark} />
+                                                </button>
+                                            </InventoryCard>
+                                        ))
+                                    }
+                                </Row>
+                            </div>
+
+                            {/* modal */}
+                            <Modal show={show} onHide={handleClose}>
+                                <Modal.Header className='bg-danger text-light'>
+                                    <Modal.Title>Modal heading</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Are you sure want to delete this item</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleClose}>
+                                        Close
+                                    </Button>
+                                    <Button variant="danger" onClick={handleRemove}>
+                                        Delete Item
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+                            {/* pagination */}
+                            {
+                                pageNumber > 0 && <div className="mt-4">
+                                    <Pagination
+                                        pageNumber={pageNumber}
+                                        currentPage={currentPage}
+                                        setCurrentPage={setCurrentPage}
+                                        setLoading={setLoading}
+                                        setItemPerPage={setItemPerPage}
+                                        itemPerPage={itemPerPage}
+                                    />
+                                </div>
+                            }
+                        </div>
+
+                    </>
+                )
             }
         </div>
     );
