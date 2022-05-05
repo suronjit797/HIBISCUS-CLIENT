@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "https://assignment-11-suronjit.herokuapp.com/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
@@ -21,7 +21,9 @@
     "react-firebase-hooks": "^5.0.3",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-slick-slider": "^0.15.10",
     "react-toastify": "^8.2.0",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -48,7 +48,7 @@ const SocialSignIn = () => {
             axios.post('/api/user/login', { email })
                 .then(res => {
                     localStorage.setItem('auth_token', res.data.token)
-                    navigate(from, { replace: true });
+                    return navigate(from, { replace: true });
                 })
                 .catch(error => console.log(error))
         }

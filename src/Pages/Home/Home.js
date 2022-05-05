@@ -9,6 +9,7 @@ import HomeBanner from './HomeBanner';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import HomeSummary from './HomeSummary';
+import HomeRecent from './HomeRecent';
 
 
 const Home = () => {
@@ -54,11 +55,7 @@ const Home = () => {
             <div className="container">
 
                 {/* Inventory summary */}
-
                 <HomeSummary />
-
-
-
                 {/* inventory section */}
                 <h2 className="text-center fw-bold mt-5 mb-4"> Inventory Items </h2>
                 <div className="pmt-4 mb-5">
@@ -72,7 +69,7 @@ const Home = () => {
                     </div>
                 </div>
 
-                {/* add 2 more section......... */}
+                <HomeRecent />
 
 
             </div>

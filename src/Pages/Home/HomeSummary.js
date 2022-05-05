@@ -41,8 +41,6 @@ const HomeSummary = () => {
 
 
 
-
-
     return (
         <div className='mt-5'>
             <h3 className="text-center mb-4 home_summary-header fw-bold">

@@ -54,3 +54,12 @@
 .summary_card:hover::after{
     left: 200%;
 }
+
+/* homeRecent */
+.homeRecent .card{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+    background-blend-mode: color;
+
+}

@@ -12,8 +12,7 @@ const Blogs = () => {
     const [question, setQuestion] = useState('')
     const [answer, setAnswer] = useState('')
     const [loading, setLoading] = useState(true)
-
-    const [role, setRole] = useState('user')   //have to make with server
+    const [role, setRole] = useState('user')
 
 
     // get auth token form localStorage adn decoded

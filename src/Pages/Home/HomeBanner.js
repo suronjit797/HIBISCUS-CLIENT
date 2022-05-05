@@ -1,4 +1,3 @@
-import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import NewPhone from '../../images/slider/cool-new-mobile.jpg'
 import Iphone from '../../images/slider/iphone.png'
@@ -6,7 +5,6 @@ import Iphone from '../../images/slider/iphone.png'
 import './Home.css'
 
 const HomeBanner = () => {
-
 
 
     return (

@@ -6,6 +6,8 @@ import { Spinner } from 'react-bootstrap';
 
 // styles
 import 'react-toastify/dist/ReactToastify.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
@@ -25,8 +27,6 @@ import AddItems from './Pages/AddItems/AddItems';
 import MyItems from './Pages/MyItems/MyItems';
 import Blogs from './Pages/Blogs/Blogs';
 import UpdateItem from './Pages/UpdateItem/UpdateItem';
-import axios from 'axios';
-import { useEffect } from 'react';
 
 
 function App() {
