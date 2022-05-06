@@ -41,7 +41,7 @@ const Footer = () => {
                             <h5 className="fw-bold mt-5 mt-sm-0  mb-4"> Account </h5>
                             <Link to='/my-items'> My items </Link>
                             <Link to='/add-items'> Add items </Link>
-                            <Link to='/profile/:id'> Personal Information </Link>
+                            <Link to='/profile'> Personal Information </Link>
                             {
                                 user?(
                                     <Link className='text-danger' to='/' onClick={handleSignOut}>Log out</Link>

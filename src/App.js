@@ -27,6 +27,7 @@ import AddItems from './Pages/AddItems/AddItems';
 import MyItems from './Pages/MyItems/MyItems';
 import Blogs from './Pages/Blogs/Blogs';
 import UpdateItem from './Pages/UpdateItem/UpdateItem';
+import Profile from './Pages/Profile/Profile';
 
 
 function App() {
@@ -55,13 +56,14 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/blogs' element={<Blogs />} />
         <Route path='/inventory' element={<RequireAuth><Inventories /></RequireAuth>} />  {/* change require auth */}
         <Route path='/inventory/:id' element={<RequireAuth><SingleInventory /></RequireAuth>} />
         <Route path='/update-item/:id' element={<RequireAuth><UpdateItem /></RequireAuth>} />
         <Route path='/manage-inventories' element={<RequireAuth><ManageInventories /></RequireAuth>} />
         <Route path='/add-items' element={<RequireAuth><AddItems /></RequireAuth>} />
         <Route path='/my-items' element={<RequireAuth><MyItems /></RequireAuth>} />
-        <Route path='/blogs' element={<Blogs />} />
+        <Route path='/profile' element={<RequireAuth><Profile /></RequireAuth>} />
 
         <Route path='*' element={<NotFound />} />
       </Routes>

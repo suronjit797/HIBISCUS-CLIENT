@@ -1,0 +1,8 @@
+.profile{
+    max-width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: var(--box_shadow-up);
+    padding: 15px 30px;
+    border-radius: 15px;
+}
