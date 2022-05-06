@@ -82,7 +82,7 @@ const ManageInventories = () => {
         <div className="manageInventory">
             <div className='container my-5 text-capitalize'>
                 <div className="d-block d-md-flex align-items-center mb-4 mb-md-5">
-                    <h2 className='mb-3 mb-md-0 text-md-start text-center'> Manage <span className="text-primary"> inventories </span> </h2>
+                    <h2 className='mb-3 mb-md-0 text-md-start text-center headers'> Manage <span className="text-primary"> inventories </span> </h2>
                 <button
                         className="btn me-md-0 d-block mx-auto px-5 fw-bold neomorphs_btn text-success"
                         onClick={() => navigate('/add-items')}

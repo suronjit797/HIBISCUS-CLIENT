@@ -1,8 +1,11 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
+    box-shadow: var(--box_shadow-up);
+}
 
-
-.header_logo{
+.header_logo {
     width: 150px;
 }
-.navbar-nav .nav-link{
+
+.navbar-nav .nav-link {
     font-weight: 500;
 }

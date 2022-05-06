@@ -44,6 +44,11 @@ a:hover {
     border-bottom-right-radius: 30px;
 }
 
+.headers{
+    text-shadow: var(--box_shadow-up);
+    user-select: none;
+}
+
 
 /* button */
 .primary_btn {

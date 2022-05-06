@@ -59,9 +59,12 @@ const Home = () => {
             <div className="container">
 
                 {/* Inventory summary */}
-                <HomeSummary />
+                <div className="mb-5">
+                    <HomeSummary />
+                </div>
+                <hr />
                 {/* inventory section */}
-                <h2 className="text-center fw-bold mt-5 mb-4"> Inventory Items </h2>
+                <h2 className="text-center fw-bold mt-5 mb-4 headers"> Inventory Items </h2>
                 <div className="pmt-4 mb-5">
                     <Row xs={1} md={2} lg={3} className="g-4">
                         {
@@ -73,7 +76,11 @@ const Home = () => {
                     </div>
                 </div>
 
+                <hr />
+
+                <div className="mt-5">
                 <HomeRecent />
+                </div>
 
 
             </div>

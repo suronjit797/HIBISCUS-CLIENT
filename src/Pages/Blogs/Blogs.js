@@ -97,7 +97,7 @@ const Blogs = () => {
                             <button className="btn mt-3 neomorphs_btn w-100 fw-bold">Post </button>
                         </form>
                     </div>
-                    <h2 className='text-center mb-4'> Blogs </h2>
+                    <h2 className='text-center mb-4 headers'> Blogs </h2>
                 </>
                 {
                     blogs.length > 0 ? (

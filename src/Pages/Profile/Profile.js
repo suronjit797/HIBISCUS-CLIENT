@@ -27,8 +27,6 @@ const Profile = () => {
         )
     }
 
-    console.log(user)
-
     return (
         <div className='container my-4'>
             <div className="profile">
