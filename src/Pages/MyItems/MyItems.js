@@ -72,14 +72,9 @@ const MyItems = () => {
     // remove handler
     const handleRemove = () => {
         setShow(false);
-        toast.info('remove your item will be available soon', { theme: 'colored' })
-
-        // this item have to available after assignment result
-        /* 
-                axios.delete(`/api/inventory/${removeItem._id}`, { data: { image: removeItem.image } })
-                    .then(res => setLoading(true))
-                    .catch(error => console.log(error))
-        */
+        axios.delete(`/api/inventory/${removeItem._id}`, { data: { image: removeItem.image } })
+            .then(res => setLoading(true))
+            .catch(error => console.log(error))
     }
 
     // loading spinner
@@ -97,8 +92,8 @@ const MyItems = () => {
                 myItems.length <= 0 ? (
                     <>
                         <h3 className="text-danger text-center"> You haven't add any item.. please add some </h3>
-                        <div className="text-center mt-5"> 
-                        <Link to='/add-items' className='neomorphs_btn px-4 fw-bold text-capitalize'> go to add item </Link> 
+                        <div className="text-center mt-5">
+                            <Link to='/add-items' className='neomorphs_btn px-4 fw-bold text-capitalize'> go to add item </Link>
                         </div>
                     </>
                 ) : (

@@ -15,12 +15,16 @@ import HomeRecent from './HomeRecent';
 const Home = () => {
     const navigate = useNavigate()
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user, userLoading, error] = useAuthState(auth);
     const [inventories, setInventories] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         axios.get('/api/inventory?limits=6')
-            .then(res => setInventories(res.data))
+            .then(res => {
+                setInventories(res.data)
+                setLoading(false)
+            })
             .catch(error => console.dir(error))
     }, [user])
 
@@ -38,7 +42,7 @@ const Home = () => {
         }
     }, [error])
 
-    if (loading) {
+    if (loading || userLoading) {
         return (
             <section className="centerSpinner">
                 <Spinner animation="border" variant="primary" />
