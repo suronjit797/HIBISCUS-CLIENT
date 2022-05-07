@@ -38,7 +38,7 @@ const MyItems = () => {
         })
             .then(res => setItemPageNumber(Math.ceil(parseInt(res.data.result) / parseInt(itemPerPage))))
             .catch(error => console.dir(error))
-    }, [itemPerPage, auth_token])
+    }, [itemPerPage, auth_token, loading])
 
     useEffect(() => {
         const skip = currentPage * itemPerPage

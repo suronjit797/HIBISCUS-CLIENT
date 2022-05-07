@@ -63,3 +63,33 @@
     background-blend-mode: color;
 
 }
+
+/* home_bottom */
+.home_bottom{
+    min-height: 70vh;
+    background-image: url(../../images/apple-banner_v2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative;
+}
+.home_bottom::after, .home_bottom::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 20%;
+}
+.home_bottom::after{
+    top: 0;
+    background: linear-gradient(180deg, rgba(0, 26, 255, 0.3), transparent);
+}
+.home_bottom::before{
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(25, 0, 255, 0.3), transparent);
+}
+
+.home_bottom .header{
+    min-height: 70vh;
+}

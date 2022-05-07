@@ -36,7 +36,7 @@ const ManageInventories = () => {
         axios.get('/api/inventory/count')
             .then(res => setItemPageNumber(Math.ceil(parseInt(res.data.result) / parseInt(itemPerPage))))
             .catch(error => console.dir(error))
-    }, [itemPerPage])
+    }, [itemPerPage, loading])
 
 
 
@@ -53,7 +53,7 @@ const ManageInventories = () => {
     }, [loading, currentPage, itemPerPage])
     useEffect(() => {
         document.title = 'Mange Inventory - HIBISCUS'
-    }, [])
+    }, [loading])
 
     // handler
     const handleClose = () => setShow(false);
@@ -88,7 +88,12 @@ const ManageInventories = () => {
                         onClick={() => navigate('/add-items')}
                     > Add new items </button>
                 </div>
-                <Table hover bordered >
+                {
+                    console.log(inventories.length)
+                }
+                {
+                    inventories.length ? (
+                        <Table hover bordered >
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -113,6 +118,13 @@ const ManageInventories = () => {
                         }
                     </tbody>
                 </Table>
+                    ):(
+                        <h4 className="text-center text-danger"> No items found </h4>
+                    )
+                }
+
+
+
                 {/* pagination */}
                 {
                     pageNumber > 0 && <div className="mt-4">

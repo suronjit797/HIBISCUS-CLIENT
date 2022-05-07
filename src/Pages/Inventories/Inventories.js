@@ -32,11 +32,11 @@ const Inventories = () => {
         axios.get('/api/inventory/count')
             .then(res => setItemPageNumber(Math.ceil(parseInt(res.data.result) / parseInt(itemPerPage))))
             .catch(error => console.dir(error))
-    }, [itemPerPage])
+    }, [itemPerPage, loading])
 
     useEffect(() => {
         document.title = 'Inventory - HIBISCUS'
-    }, [])
+    }, [loading])
 
     // loading spinner
     if (loading) {
@@ -60,13 +60,17 @@ const Inventories = () => {
                     > Add new items </button>
                 </div>
 
-
-
-                <Row xs={1} md={2} lg={3} className="g-4">
-                    {
-                        inventories.map(inventory => <InventoryCard key={inventory._id} inventory={inventory} />)
-                    }
-                </Row>
+                {
+                    inventories.length ? (
+                        <Row xs={1} md={2} lg={3} className="g-4">
+                            {
+                                inventories.map(inventory => <InventoryCard key={inventory._id} inventory={inventory} />)
+                            }
+                        </Row>
+                    ) : (
+                        <h4 className="text-danger text-center text-capitalize pb-4"> No Inventory items found </h4>
+                    )
+                }
                 {/* pagination */}
                 {
                     pageNumber > 0 && <div className="mt-4">

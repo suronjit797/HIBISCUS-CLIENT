@@ -4,7 +4,7 @@ import { Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBoxesStacked } from '@fortawesome/free-solid-svg-icons'
 
-const HomeSummary = () => {
+const HomeSummary = ({ loading }) => {
 
     const [totalItems, setTotalItems] = useState(0)
     const [lowQuantity, setLowQuantity] = useState(0)
@@ -16,27 +16,27 @@ const HomeSummary = () => {
     useEffect(() => {
         axios.get('/api/inventory/count')
             .then(res => setTotalItems(res.data.result))
-    }, [])
+    }, [loading])
     // lowQuantity
     useEffect(() => {
         axios.get('/api/low-quantity')
             .then(res => setLowQuantity(res.data.result))
-    }, [])
+    }, [loading])
     // most in stock
     useEffect(() => {
         axios.get('/api/high-quantity')
             .then(res => setHeighQuantity(res.data.result))
-    }, [])
+    }, [loading])
     // out of  stock
     useEffect(() => {
         axios.get('/api/stock-out')
             .then(res => setStockOut(res.data.result))
-    }, [])
+    }, [loading])
     // supplier
     useEffect(() => {
         axios.get('/api/suppliers')
             .then(res => setSupplier(res.data.result))
-    }, [])
+    }, [loading])
 
 
 
