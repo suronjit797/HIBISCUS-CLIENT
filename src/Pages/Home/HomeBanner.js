@@ -5,8 +5,6 @@ import Iphone from '../../images/slider/iphone.png'
 import './Home.css'
 
 const HomeBanner = () => {
-
-
     return (
         <>
             <Carousel fade>

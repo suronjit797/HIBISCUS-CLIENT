@@ -31,7 +31,7 @@ const Home = () => {
 
     useEffect(() => {
         document.title = 'Home - HIBISCUS'
-    }, [])
+    }, [loading])
 
 
 

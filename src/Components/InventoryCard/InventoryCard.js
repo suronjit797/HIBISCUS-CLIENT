@@ -28,7 +28,7 @@ const InventoryCard = ({ inventory, children }) => {
                 } */}
 
                 <div className="inventory_image">
-                    <Card.Img variant="top" src={`https://assignment-11-suronjit.herokuapp.com/${image}`} />
+                    <Card.Img variant="top" src={`https://assignment-11-suronjit.herokuapp.com${image}`} />
                 </div>
                 <Card.Body className='text-capitalize'>
                     <Card.Title className='text-success mb-0 fw-bold'>

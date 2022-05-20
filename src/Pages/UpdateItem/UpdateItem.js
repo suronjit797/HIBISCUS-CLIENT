@@ -124,7 +124,7 @@ const UpdateItem = () => {
                     <div className="row gx-4 align-items-stretch">
                         <div className="col-md-4">
                             <div className="position-relative inventory_image h-100">
-                                <img src={`https://assignment-11-suronjit.herokuapp.com/${image}`} className="img-fluid rounded-start h-100 w-100" alt="..." />
+                                <img src={`https://assignment-11-suronjit.herokuapp.com${image}`} className="img-fluid rounded-start h-100 w-100" alt="..." />
                                 <b
                                     className={` position-absolute end-0 top-0 rounded_custom-left px-3 py-2 text-white bg-${quantityClass} `}>
                                     {
